@@ -29,9 +29,6 @@ While the geologic record is the best and often only documentation of past envir
 
 There has been  
 
-
-
-
 # Background
 ## Classical age-depth modeling
 ## Bayesian age-depth modeling
@@ -39,14 +36,34 @@ There has been
 * Malinverno "floating" bayesian model 
 
 
-# Statistical Methods 
+# Astronomic Tuning of Sedimentary Records 
+
+Using the the geologic record of astronomical cycles to develop chronologies is complicated by the distortion of the signal by various geological and climatological processes (Earth system transfer functions; @meyers2018). Long term shifts and random variations in sedimentation degrade the original astronomic signal and can also introduce non-astronomic cyclicity into sedimentary records. accurately modeling and removing this distortion from these records is of considerable value because the precision of the resulting astronomical-tuned chronologies is often a significant improvement over un-tuned stratigraphic records. 
+
+Astrochronologic tuning of sedimentary records is usually accomplished by applying a sedimentation rate model that, when stratigraphic position is converted to time, maximizes the amplitude of the signal in orbital frequencies (e.g., eccentricity, obliquity, precession)
+
+
+Removing this distortion from records is of considerable value, because the precision of the resulting chronologies can be greatly improved relative to un-tuned stratigraphic records. 
+
+the subdiscipline of cyclostratigraphy that uses the geologic record of astronomical cycles (or Milankovitch cycles) to develop geological timescales. Also, an “astronomical time scale” or “orbital time scale” constructed using this approach.
+
+Orbital tuning of cyclostratigraphic records attempts to reverse the 
+
+
+Tuning stratigraphic records to orbital cycles us usually accomplished by applying a sedimentation rate model
+
+
 
 $$P(parameters~|data) = \frac{P(data~|parameters)}{P(data)} \times P(parameters)$$
 
-
-
 In our case, the data takes two forms. First, our cyclostratigraphic proxy record, which consists measurements $[d_1, d_2, ... d_i]$ where $i$ is the stratigraphic position of each measurement. We assume that cyclic signals in $d$ is derived from orbital forcing and the record can therefore be tuned. 
 
+
+# Model Validation 
+
+# Results
+
+# Discussion
 \newpage
 
 # References {.unnumbered}
