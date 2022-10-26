@@ -48,6 +48,11 @@ header-includes:
 ### Outlier Dates
 
 # Results
+## Case 1 - Synthetic Data 
+
+## Case 2 - Cyclostratigraphy Inter-comparison Project
+
+## Case 3 - Cenomanian-Turonian Boundary Stratotype
 
 # Discussion
 
