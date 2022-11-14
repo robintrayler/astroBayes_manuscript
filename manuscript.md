@@ -55,9 +55,14 @@ header-includes:
 ## Case 3 - Cenomanian-Turonian Boundary Stratotype
 
 # Discussion
+$$h_1 ... h_n$$
 
+$$\prod_{i=1}^{n}[N(ti, \mu_i, \sigma_i)]$$
 # Conclusions
 \newpage
+
+
+
 
 # References {.unnumbered}
 :::{#refs}
