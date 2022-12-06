@@ -23,48 +23,15 @@ header-includes:
 
 <!-- pandoc -s -o manuscript.pdf --pdf-engine=xelatex --filter pandoc-crossref --citeproc --number-sections manuscript.md --> 
 
+
 # Introduction
 
-# Background
+Linking the rock record to absolute time is essential to understanding the timing, rate, and interactions of and among geologic, climatologic, and biologic processes over the course of earth history. Developing chronologies for rock records rely on models (age-depth models) that relate stratigraphic position to age. This is usually accomplished by fitting a curve to several dated horizons throughout a stratigraphic section which is then used to estimate the age and uncertainty at undated points [@blaauw2012]. A variety of Bayesian statistical approaches have been proposed to fit age-depth models including `Bchron` [@haslett2008] `Bacon` [@blaauw2011], `OxCal` [@bronkramsey2008], and `Chron.jl` [@schoene2019]. While these methods vary considerably in their mathematical framework, most they share two fundamental characteristics. First, they treat sediment accumulation as a stochastic process where accumulation rate is allowed to vary randomly and considerably throughout a stratigraphic section. Second, they rely on discrete point-estimates of absolute age, usually in the form of radioisotopic dates (e.g., ^40^Ar/^39^Ar, U-Pb, ^14^C), as their basis for chronology construction. This leads to chronologies with widely variable uncertainties [@trachsel2017; @telford2004] that are largely a function of data density. That is model errors are lower in areas where there are more age determinations and higher in areas with less data, leading to "sausage" shaped uncertainties [@devleeschouwer2014]. Incorporating more chronologic information is the best way to improve model accuracy and reduce uncertainty [@blaauw2018], however, this is not always possible. While some records are amenable to almost continuous radioisotopic dating (e.g., ^14^C analysis of peat cores), dating most deep-time stratigraphic sections relies on the presence of volcanic ashes, which usually occur in only a few horizons. Since the density of radioisotopic ages is unlikely to change in most deep-time cases, incorporating other forms of chronologic information is crucial to improving age-depth models. 
 
-## Bayesian age-depth modeling
-* random walk models
-* Malinverno "floating" bayesian model 
+<!-- need more informaiton on the desirable properties of both data sources  --> 
 
-## Astronomic Calibration of Sedimentary Records 
+Astrochronology links oscillations in climate (as recorded in the rock record) to the quasiperiodic changes in earths orbit [@laskar2020]. These climate rhythms are known as “Milankovitch cycles” and are related to the ellipticity of earths orbit (eccentricity), changes in axial tilt (obliquity), and the precession of earths axis (precession). Since the periods of the different cycles are well understood [@laskar2020; @hinnov2013], astrochronologic records can serve as a "metronome" for the relative passage of time in the rock record.  Unlike radioisotopic geochronology which produces point estimates of age, astrochronologic records can be more-or-less continuous throughout stratigraphic sections. This allows the construction of high-resolution chronologies with uncertainties closely linked to the period of the Milankovitch frequencies [@meyers2018; @meyers2015; @malinverno2010]. However, these chronologies "float" in absolute time and rely on radioisotopic data as temporal anchors.
 
-# Methods
-* Three innovations
-	* joint inversion of astrochronology and radioisotopic geochronology
-	* fitting hiatuses (under specific circumstances)
-	* conditioning on multiple cyclostratigraphic records
+Several studies have linked astrochronologic and radioisotopic data in a Bayesian framework [@devleeschouwer2014; @harrigan2021; @meyers2012], however to our knowledge, there have no attempts to jointly invert the two data types into age-depth models. This inversion is appealing for several reasons. First, radioisotopic geochronology and astrochronology are complementary. Modern high-precision radioisotopic geochronology can produce point-estimates of age with sub-Milankovich-cycle precision, while astrochronologic durations create a continuous record of accumulation rate which can be leveraged to greatly reduce age-depth model uncertainties between dated horizons. 
 
-## Model Validation 
-
-### Recovering Original Age-Model
-
-### Signal to Noise
-
-### Outlier Dates
-
-# Results
-## Case 1 - Synthetic Data 
-
-## Case 2 - Cyclostratigraphy Inter-comparison Project
-
-## Case 3 - Cenomanian-Turonian Boundary Stratotype
-
-# Discussion
-$$h_1 ... h_n$$
-
-$$\prod_{i=1}^{n}[N(ti, \mu_i, \sigma_i)]$$
-# Conclusions
-\newpage
-
-
-
-
-# References {.unnumbered}
-:::{#refs}
-:::
-
+In this paper we present a new joint inversion of radioisotope geochronology and astrochronology. 
