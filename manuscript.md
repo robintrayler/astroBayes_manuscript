@@ -6,12 +6,13 @@ author:
   - Mark D. Schmitz
 bibliography: /Users/robintrayler/Zotero/ref_library.bib
 csl: /Users/robintrayler/Zotero/styles/earth-and-planetary-science-letters.csl
-mainfont: "Helvetica"
+mainfont: "Georgia"
 fontsize: 12pt
 geometry: margin=1.0in
 tblPrefix: Table
 figPrefix: Figure
 secPrefix: Section
+autoEqnLabels: true
 link-citations: true
 indent: true
 header-includes:
@@ -35,3 +36,18 @@ Astrochronology links oscillations in climate (as recorded in the rock record) t
 Several studies have linked astrochronologic and radioisotopic data in a Bayesian framework [@devleeschouwer2014; @harrigan2021; @meyers2012], however to our knowledge, there have no attempts to jointly invert the two data types into age-depth models. This inversion is appealing for several reasons. First, radioisotopic geochronology and astrochronology are complementary. Modern high-precision radioisotopic geochronology can produce point-estimates of age with sub-Milankovich-cycle precision, while astrochronologic durations create a continuous record of accumulation rate which can be leveraged to greatly reduce age-depth model uncertainties between dated horizons. 
 
 In this paper we present a new joint inversion of radioisotope geochronology and astrochronology. 
+
+
+# Background
+## Bayesian Modeling
+Bayesian statistics attempts to determine the most probable values of unknown parameters (*θ*) given data (*x*) and prior information about those parameters. This is formalized in Bayes equation:
+
+$$\mathnormal{P}(\theta | x) \propto \frac{\mathnormal{P}(x | \theta)}{\mathnormal{P}(x)} \times \mathnormal{P}(\theta)$$ {#eq:bayes}
+
+Where the fist term on righthand side of @eq:bayes is the conditional probability of the data given a set of parameters and the second term is the probability of the parameters based on any prior beliefs about their credible range. The lefthand side of @eq:bayes is the posterior conditional probability of the parameters given the data. In our case, our data (*x*) is represented by the radioisotopic geochronology and astrochronology and the parameters (*θ*) we wish to determine the most probable values of are a vector of sedimentation rates. Our prior beliefs include superposition constraints and limits on the possible values sedimentation rate can take. 
+
+\newpage
+
+# References {.unnumbered}
+:::{#refs}
+:::
