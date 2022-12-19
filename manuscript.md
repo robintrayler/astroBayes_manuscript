@@ -41,21 +41,41 @@ In this paper we present a new joint inversion of radioisotope geochronology and
 # Background
 ## Bayesian Modeling
 
-Bayesian statistics attempts to determine the most probable values of unknown parameters (*θ*) given data (*x*) and prior information about those parameters. This is formalized in Bayes equation where: 
+Bayesian statistics aims to determine the most probable values of unknown *parameters* given *data* and prior information about those parameters. This formalized in Bayes equation where: 
 
-$$\mathnormal{P}(\theta | x) \propto \frac{\mathnormal{P}(x | \theta)}{\mathnormal{P}(x)} \times \mathnormal{P}(\theta)$$ {#eq:bayes}
+$$P(parameters | data) \propto P(data | parameters) \times P(parameters)$$ {#eq:bayes} 
 
-The first term on the righthand side of @eq:bayes is the conditional probability of the data given a possible set of parameters, and the second term  represents and prior beliefs about those parameters. The lefthand side of @eq:bayes is the posterior conditional probability of the parameters given the data. Bayes equation is often difficult or impossible to solve analytically and instead the posterior distribution is simulated by using Markov Chain Monte Carlo (MCMC) methods to generate a random representative sample. Given a large enough sample size and adequate exploration of parameter space this sample should have the same properties as the "true" posterior distribution [@gelman1996; @kruschke2015]. 
+The first term on the righthand side of @eq:bayes, known as the *likelihood*, is the conditional probability given a set of parameters values. The second term on the righthand side, known as the *prior*, represents the probability of previous knowledge or other constraints on the possible values of the parameters. The lefthand side of @eq:bayes is represents the *posterior* probability of the parameters. That is, how probable are the proposed parameters given a set of data. Bayes equation is often difficult or impossible to solve analytically and instead the posterior distribution is simulated using Markov Chain Monte Carlo methods (MCMC) to generate a random representative sample. Given a large enough sample size and adequate exploration of parameters space, this sample should have the same properties as the "true" posterior distribution [@gelman1996; @kruschke2015].
 
 ### Bayesian Age-Depth Modeling
 
-Several bayesian models are available to fit age-depth models to radioisotope geochronology data including `OxCal` [@bronkramsey2008], `Bchron` [@haslett2008] `Bacon` [@blaauw2011], and `Chron.jl` [@schoene2019]. Each modeling framework takes a slightly different approach to model fitting but they each focus on fitting models to radioisotopic geochronology data alone. 
+# Methods
+## Model Construction
 
-`Bacon` models sedimentation accumulation as a series of discrete slices where the posterior distribution is of sedimentation rate. 
+![Schematic of model parameters.](./figures/workflow.pdf){#fig:workflow width=100%}
 
-the rate of accumulation is controlled by two prior distributions, a gamma distribution that represents prior constraints on sedimentation rate and a beta distribution that controls a sedimentation memory parameter, that is how rapidly sedimentation rate can change between slices. While the second parameter is more 
+Developing a model that integrates astrochronology and geochronology requires defining likelihood functions that reflect the probability of both data types given a common set of parameters. We use two sets of parameters for our model. The first consists of a vector of sedimentation rates (*r*) and stratigraphic boundary positions (*z*) that define regions of constant sedimentation. Together *r* and *z* create a floating age model of piecewise linear segments. We also define a point (*a~0~*) that acts as an anchor to link a floating age model to absolute time. We choose the uppermost stratigraphic point to serve as *a~0~*. Optional additional anchoring points *a~1-i~* can be included to account for hiatuses. 
 
-`Bchron` uses a compound-Poisson-gamma distribution model to simulate sedimentation variability and fits a series piecewise-linear segments to the geochronology data. This process means that over the course of many MCMC model iterations sedimentation rate varies randomly throughout a stratigraphic section which may include near-hiatuses or period of near-infinite sedimentation rates. 
+Our data consists of measurements of a astrochronologic proxy record and a set of radioisotope dates that share a common stratigraphic scale. That is, the stratigraphic position of the dates overlap with the stratigraphic positions of the proxy record.  
+
+The parameters of our model are a vector of sedimentation rates (*r*) and layer boundaries (*z*) that define regions of constant sedimentation throughout a stratigraphic section. Optionally, the layer boundaries can also serve as the position of sedimentary hiatuses (*h*). An additional parameter, which we refer to as the anchor point (*a*) ties the model to absolute time.
+
+# Probability of radioisotopic ages
+
+The vectors *r* (sedimentation rate) and and *z* (layer boundaries) can be used to calculate a floating age model (see @fig:workflow), and this model can be anchored in absolute time by proposing an age for the *a* parameter (anchor point). The resulting age model consists of a vector of stratigraphic positions (*d*) and vector of ages (*t*) that relate stratigraphic position to absolute time. The probability of this anchored age model can be calculated using the radioisotopic dates. The stratigraphic positions of the dates {*d~j~* ... *d~n~*} and their corresponding ages {*t~j~* ... *t~n~*} are a subset of *d* and *t*, respectively. We therefore define the probability of an anchored age model as given a set of dates as: 
+
+$$P(t) = \prod_{j=1}^{n} N(\mu_j, \sigma^{2}_j)$$ {#eq:radio_prob}
+
+Where *μ~j~* is the weighted mean and *σ^2^~j~* is the variance of the *j^th^* radioisotopic date at stratigraphic position *d~j~*. In effect this probability calculation reflects how well the age model "overlaps" the radioisotope dates where model ages that are closer to the radioisotopic dates are more probable [@schoene2019]. Importantly, only the radioisotopically dated stratigraphic horizons influence this probability. 
+ 
+## Notes 
+<!-- Several bayesian models are available to fit age-depth models to radioisotope geochronology data including `OxCal` [@bronkramsey2008], `Bchron` [@haslett2008] `Bacon` [@blaauw2011], and `Chron.jl` [@schoene2019]. Each modeling framework takes a slightly different approach to model fitting but they each focus on fitting models to radioisotopic geochronology data alone. -->
+
+<!-- `Bacon` models sedimentation accumulation as a series of discrete slices where the posterior distribution is of sedimentation rate. --> 
+
+<!-- the rate of accumulation is controlled by two prior distributions, a gamma distribution that represents prior constraints on sedimentation rate and a beta distribution that controls a sedimentation memory parameter, that is how rapidly sedimentation rate can change between slices. While the second parameter is more  -->
+
+<!-- `Bchron` uses a compound-Poisson-gamma distribution model to simulate sedimentation variability and fits a series piecewise-linear segments to the geochronology data. This process means that over the course of many MCMC model iterations sedimentation rate varies randomly throughout a stratigraphic section which may include near-hiatuses or period of near-infinite sedimentation rates. -->
 
 
 
