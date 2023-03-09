@@ -137,6 +137,8 @@ To assess model stability, we generated 1000 individual simulations for the TD-1
 
 ### Sensitivity
 
+We tested the sensitivity of our model to both the number and stratigraphic position of radioisotopic dates. For each of our testing data sets, we randomly generated a set of dates from the underlying sedimentation model using Monte Carlo methods which were then used as model inputs along with the synthetic astrochronologic records. We repeated this procedure 1,000 times using 2, 4, 6, or 8 dates for a total of 4,000 test models per testing data set (i.e. CIP2 and TD1). For the CIP-2 data we added an additional stratigraphic constraint to ensure the the hiatus was always bracketed by dates, with at least one date above and 
+
 We tested the sensitivity of our model to both the number and stratigraphic position of radioisotopic dates. For both our testing data sets we randomly generated a set of dates from the underlying true age model using Monte Carlo methods, which were then used as inputs alongside the synthetic astrochronologic record. We repeated this procedure 1,000 times using 2, 4, 6, and 8 dates for a total of 4,000 test models. For the CIP-2 data set we added an additional constraint to ensure that the hiatus was always bracketed by dates, with at least one date above and below the hiatus position. 
 
 ### Assessment
@@ -147,18 +149,18 @@ We calculated two metrics to assess model performance. First we calculated the p
 
 ## Contained Proportion Table
 
-| data set | number of dates | fraction contained |
+| data set | number of dates | percent contained |
 |:--------:|:---------------:|:------------------:|
-|   TD-1   |         2       |         0.98       |
+|   TD-1   |         2       |         0.99       |
 |          |         4       |         0.99       |
-|          |         6       |                    |
+|          |         6       |         0.98       |
 |          |         8       |                    |
 |  CIP-2   |         2       |                    |
 |          |         4       |                    |
-|          |         6       |                    |
+|          |         6       |         0.99       |
 |          |         8       |                    |
 
-Table: proportion of true sedimentation model contained within the 95% credible interval with an increasing number of dates. {#tbl:contained}
+Table: Proportion of the synthetic sedimentation model contained within the 95% credible interval of the model posterior with an increasing number of dates. The dates were drawn directly from the sedimentation model with no outlier ages. {#tbl:contained}
 
 # Notes 
 * Several bayesian models are available to fit age-depth models to radioisotope geochronology data including `OxCal` [@bronkramsey2008], `Bchron` [@haslett2008] `Bacon` [@blaauw2011], and `Chron.jl` [@schoene2019]. Each modeling framework takes a slightly different approach to model fitting but they each focus on fitting models to radioisotopic geochronology data alone. 
