@@ -64,7 +64,7 @@ age_model <- function(i,
                          '_ages/')
   model_name   <- paste0(size,'_age_model_', 
                          i, 
-                         'rds') 
+                         '.rds') 
   
   model |> 
     write_rds(file = paste0(model_folder, model_name))
