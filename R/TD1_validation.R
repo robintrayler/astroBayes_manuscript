@@ -68,7 +68,7 @@ age_model <- function(i,
   
   model |> 
     write_rds(file = paste0(model_folder, model_name))
-  
+  rm(model)
   # model$CI |> 
   #   add_column(model_no = paste0('model_', i)) |> 
   #   add_column(true_age = true_age) |> 
