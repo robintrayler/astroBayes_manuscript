@@ -5,7 +5,7 @@ author:
   - Stephen R. Meyers
   - Mark D. Schmitz
 bibliography: /Users/robintrayler/Zotero/ref_library.bib
-csl: /Users/robintrayler/Zotero/styles/earth-and-planetary-science-letters.csl
+csl: /Users/robintrayler/Zotero/styles/copernicus-publications.csl
 mainfont: "Georgia"
 fontsize: 12pt
 geometry: margin=1.0in
