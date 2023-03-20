@@ -88,7 +88,7 @@ age_model <- function(i,
     write_csv(file = paste0(model_folder, model_name))
 } # end of function
 
-# run R in paralel ------------------------------------------------------------
+# run R in parallel ------------------------------------------------------------
 start <- Sys.time()
 
 clusterMap(cl = cl, 
