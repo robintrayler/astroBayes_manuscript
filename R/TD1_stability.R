@@ -54,7 +54,7 @@ age_model <- function(i) {
   rm(model)
 } # end of function
 
-# run R in paralel ------------------------------------------------------------
+# run R in parallel ------------------------------------------------------------
 start <- Sys.time()
 
 clusterMap(cl = cl, 
