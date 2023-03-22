@@ -132,11 +132,13 @@ We tested our model using two synthetic data sets that consist of a true age-dep
 
 We calculated assessed model performance using two metrics. First, we assessed model accuracy and precision by calculating the proportion of the true age-depth model that fell within the 95% credible interval (95% CI) of our model posterior. We assume that a well performing model should contain the true age model in most cases. This method that has been used previously to assess performance of existing Bayesian age-depth models [@parnell2011; @haslett2008]. Second we monitored the variability of the model median (50%) and lower and upper bounds (2.5% and 97.5%) of the credible interval.
 
-## Stability 
+### Stability 
 
 We assessed model stability by generating 1,000 individual age-depth models for each testing data set using the the same input data (cyclostratigraphy, radioisotopic dates, astrologic frequencies). Each simulation ran for 10,000 MCMC iterations with the initial 1,000 steps discarded to allow for model convergence and sufficient exploration of parameter space. 
 
 ### Sensitivity
+
+We tested the sensitivity of our model to both the number and stratigraphic position of the radioisotopic dates. For each of our testing data sets we randomly generated a set of dates from the true age-depth model using Monte Carlo methods. We used these dates alongside the cyclostratigraphy data and tuning frequencies
 
 We tested the sensitivity of our model to both the number and stratigraphic position of radioisotopic dates. For each of our testing data sets, we randomly generated a set of dates from the underlying sedimentation model using Monte Carlo methods which were then used as model inputs along with the synthetic astrochronologic records. We repeated this procedure 1,000 times using 2, 4, 6, or 8 dates for a total of 4,000 test models per testing data set (i.e. CIP2 and TD1). For the CIP-2 data we added an additional stratigraphic constraint to ensure the the hiatus was always bracketed by dates, with at least one date above and 
 
