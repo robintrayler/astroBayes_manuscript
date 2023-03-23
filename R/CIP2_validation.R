@@ -96,16 +96,16 @@ age_model <- function(i,
   model |> 
     write_rds(file = paste0(model_folder, model_name))
   rm(model)
-  # run R in parallel ------------------------------------------------------------
-  start <- Sys.time()
-  
-  clusterMap(cl = cl, 
-             fun = age_model,
-             size = tests$size, 
-             i = tests$i)
-  
-  stopCluster(cl)
-  end <- Sys.time()
-  
-  print(end - start)
-  
+}
+# run R in parallel ------------------------------------------------------------
+start <- Sys.time()
+
+clusterMap(cl = cl, 
+           fun = age_model,
+           size = tests$size, 
+           i = tests$i)
+
+stopCluster(cl)
+end <- Sys.time()
+
+print(end - start)
