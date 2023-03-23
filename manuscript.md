@@ -53,17 +53,9 @@ The first term on the righthand side of @eq:bayes, known as the likelihood, is t
 
 ## Bayesian Age-Depth Modeling
 
-Developing chronologies for rock records rely on models (age-depth models) that relate stratigraphic position to age. This is usually accomplished by fitting a curve to several dated horizons throughout a stratigraphic section which is then used to estimate the age and uncertainty at undated points [@blaauw2012]. A variety of Bayesian approaches have been proposed to fit age-depth models including `Bchron` [@haslett2008] `bacon` [@blaauw2011]`OxCal` [@bronkramsey2008], and `chron.jl` [@schoene2019]. While these methods vary considerably in their mathematical framework, most they share two fundamental characteristics. First, they treat sediment accumulation as a stochastic process where accumulation rate is allowed to vary randomly and considerably throughout a stratigraphic section. Second, they rely on discrete point-estimates of absolute age, usually in the form of radioisotopic dates (e.g., ^40^Ar/^39^Ar, U-Pb, ^14^C), as their basis for chronology construction. This leads to chronologies with widely variable uncertainties [@trachsel2017; @telford2004; @devleeschouwer2014] that are largely a function of data density. That is model errors are lower in areas where there are more age determinations and higher in areas with less data, leading to "sausage" shaped uncertainties [@devleeschouwer2014]. Incorporating more chronologic information is the best way to improve model accuracy and reduce uncertainty [@blaauw2018], however, this is not always possible. While some records are amenable to almost continuous radioisotopic dating (e.g., ^14^C analysis of peat cores), dating most deep-time stratigraphic sections relies on the presence of volcanic ashes, which usually occur in only a few horizons. Since the density of radioisotopic ages is unlikely to change in most deep-time cases, incorporating other forms of chronologic information is crucial to improving age-depth models.
+Developing chronologies for rock records rely on models (age-depth models) that relate stratigraphic position to age. This is usually accomplished by fitting a curve to several dated horizons throughout a stratigraphic section which is then used to estimate the age and uncertainty at undated points [@blaauw2012]. A variety of Bayesian approaches have been proposed to fit age-depth models including `Bchron` [@haslett2008] `bacon` [@blaauw2011]`OxCal` [@bronkramsey2008], and `chron.jl` [@schoene2019]. While these methods vary considerably in their mathematical framework, most they share two fundamental characteristics. First, they treat sediment accumulation as a stochastic process where accumulation rate is allowed to vary randomly and considerably throughout a stratigraphic section. Second, they rely on discrete point-estimates of absolute age, usually in the form of radioisotopic dates (e.g., ^40^Ar/^39^Ar, U-Pb, ^14^C), as the for chronology construction. This leads to chronologies with widely variable uncertainties [@trachsel2017; @telford2004; @devleeschouwer2014] that are largely a function of data density. That is, model errors are lower in areas where there are more age determinations and higher in areas with less data, leading to "sausage" shaped uncertainties [@devleeschouwer2014]. Incorporating more chronologic information is the best way to improve model accuracy and reduce uncertainty [@blaauw2018], however, this is not always possible. While some records are amenable to almost continuous radioisotopic dating (e.g., ^14^C analysis of peat cores), dating most deep-time stratigraphic sections relies on the presence of volcanic ashes, which usually occur in only a few horizons. Since the density of radioisotopic ages is unlikely to change in most deep-time cases, incorporating other forms of chronologic information is crucial to improving age-depth models.
 
 In our case our data consists of measurements of an astrochronologic record (*data*) (e.g., δ^18^O, XRF scans, core resistivity, etc), and a set of radioisotopic dates (*dates*) that share a common stratigraphic scale. Developing an age depth model from these records requires 1) a likelihood function that reflects the probability of both data types, 2) a common set of parameters to calculate the probability of, and 3) in the case of age-depth modeling, a model that reflects our best understanding of sediment accumulation. 
-
-
-
-[@harrigan2021] 
-[@devleeschouwer2014]
-[@meyers2012]
-[@malinverno2010] 
-
 
 # Methods
 
@@ -79,7 +71,7 @@ Existing Bayesian age depth models (discussed above) model sedimentation as a re
 
 Together *r* and *z* can also be transformed to create an age-depth model consisting of piecewise linear segments that form a floating age-depth model (@fig:workflow B). This floating model can be linked to absolute time by adding a constant age (*a*) to the floating model at every stratigraphic position.   This age (*a*) acts as an anchor to link the floating age model to absolute time. Optionally, sedimentary hiatuses can also be included in the model in a similar manner by adding the duration of the hiatus (*h*) to the all the points of the anchored blade below the stratigraphic position of the hiatus.
 
-| parameter | explanation                                                      |
+| parameter |                          explanation                             |
 |:---------:|:-----------------------------------------------------------------|
 |    *r*    | sedimentation rate (m/Ma)                                        |
 |    *z*    | layer boundary positions (stratigraphic positions)               |
@@ -144,16 +136,7 @@ We tested the sensitivity of our model to both the number and stratigraphic posi
 
 We tested the sensitivity of our model to both the number and stratigraphic position of radioisotopic dates. For both our testing data sets we randomly generated a set of dates from the underlying true age model using Monte Carlo methods, which were then used as inputs alongside the synthetic astrochronologic record. We repeated this procedure 1,000 times using 2, 4, 6, and 8 dates for a total of 4,000 test models. For the CIP-2 data set we added an additional constraint to ensure that the hiatus was always bracketed by dates, with at least one date above and below the hiatus position. 
 
-### Assessment
-
-
 # Results
-
-# Defining a Sedimentation Model
-
-
-
-## Contained Proportion Table
 
 | data set | number of dates | fraction contained |
 |:--------:|:---------------:|:------------------:|
@@ -168,16 +151,14 @@ We tested the sensitivity of our model to both the number and stratigraphic posi
 
 Table: Proportion of the synthetic sedimentation model contained within the 95% credible interval of the model posterior with an increasing number of dates. The dates were drawn directly from the sedimentation model with no outlier ages. {#tbl:contained}
 
-# Notes 
+# Random Notes 
 * Several bayesian models are available to fit age-depth models to radioisotope geochronology data including `OxCal` [@bronkramsey2008], `Bchron` [@haslett2008] `Bacon` [@blaauw2011], and `Chron.jl` [@schoene2019]. Each modeling framework takes a slightly different approach to model fitting but they each focus on fitting models to radioisotopic geochronology data alone. 
 
-* `Bacon` models sedimentation accumulation as a series of discrete slices where the posterior distribution is of sedimentation rate. --> 
+* `Bacon` models sedimentation accumulation as a series of discrete slices where the posterior distribution is of sedimentation rate.
 
 * the rate of accumulation is controlled by two prior distributions, a gamma distribution that represents prior constraints on sedimentation rate and a beta distribution that controls a sedimentation memory parameter, that is how rapidly sedimentation rate can change between slices. While the second parameter is more  -->
 
-* `Bchron` uses a compound-Poisson-gamma distribution model to simulate sedimentation variability and fits a series piecewise-linear segments to the geochronology data. This process means that over the course of many MCMC model iterations sedimentation rate varies randomly throughout a stratigraphic section which may include near-hiatuses or period of near-infinite sedimentation rates. -->
-
-
+* `Bchron` uses a compound-Poisson-gamma distribution model to simulate sedimentation variability and fits a series piecewise-linear segments to the geochronology data. This process means that over the course of many MCMC model iterations sedimentation rate varies randomly throughout a stratigraphic section which may include near-hiatuses or period of near-infinite sedimentation rates.
 
 \newpage
 
