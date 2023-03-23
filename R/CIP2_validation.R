@@ -40,15 +40,26 @@ age_model <- function(i,
                       size) {
   # make sure the hiatus is bracketed
   good <- FALSE
-  while(good == FALSE) {
+  bad = TRUE
+  repeat{
     # generate some random geochronology --------------------
     index <- sample(seq_along(true_data$position), size = size)
     tmp   <- true_data[index, ]
     id    <- paste0('sample_', index) 
     
     # check to make sure the hiatus is bracketed
-    good = any(tmp$position > 6.26) &
-      any(tmp$position < 5.24)
+    # keep dates out of the hiatus
+    bad <- any(between(tmp$position, 5.24, 6.26))
+  
+    good = any(between(tmp$position, 0, 5.24)) &
+      any(between(tmp$position, 6.26, 10))
+  
+    if(good == TRUE) {
+      if(bad == FALSE) {
+        break()  
+      }
+      
+    }
   }
   # make some random dates --------------------------------
   geochron_data <- data.frame(

@@ -17,11 +17,11 @@ clusterEvalQ(cl = cl, {
   library(astroBayes)
   library(tidyverse)
   # load required data
-  cyclostrat        <- read.csv(file = './data/data_A/cyclostratigraphic_record.csv')
-  tuning_frequency  <- read.csv(file = './data/data_A/tuning_frequency.csv')
-  true_data         <- read.csv(file = './data/data_A/true_age.csv')
-  segment_edges     <- read.csv(file = './data/data_A/segment_edges.csv')
-  geochron_data     <- read.csv(file = './data/data_A/radioisotopic_dates.csv')
+  cyclostrat        <- read.csv(file = './data/TD1/cyclostratigraphic_record.csv')
+  tuning_frequency  <- read.csv(file = './data/TD1/tuning_frequency.csv')
+  true_data         <- read.csv(file = './data/TD1/true_age.csv')
+  segment_edges     <- read.csv(file = './data/TD1/segment_edges.csv')
+  geochron_data     <- read.csv(file = './data/TD1/radioisotopic_dates.csv')
 }
 )
 
@@ -45,7 +45,7 @@ age_model <- function(i) {
   
   # write the model CI to a csv --------------------------
   
-  model_folder <- paste0('./results/stability_validation/TD1/')
+  model_folder <- './results/stability_validation/TD1/'
   
   model_name   <- paste0('age_model_', i, '.rds') 
   
