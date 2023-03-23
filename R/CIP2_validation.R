@@ -31,7 +31,7 @@ clusterEvalQ(cl = cl, {
                hiatus_boundary = c(FALSE, FALSE, TRUE, FALSE),
                sed_min = c(7.5, 7.5, 10, 5),
                sed_max = c(15, 17.5, 20, 20))
-  }
+}
 )
 
 ##-----------------------------------------------------------------------------
@@ -50,10 +50,10 @@ age_model <- function(i,
     # check to make sure the hiatus is bracketed
     # keep dates out of the hiatus
     bad <- any(between(tmp$position, 5.24, 6.26))
-  
+    
     good = any(between(tmp$position, 0, 5.24)) &
       any(between(tmp$position, 6.26, 10))
-  
+    
     if(good == TRUE) {
       if(bad == FALSE) {
         break()  
@@ -91,23 +91,21 @@ age_model <- function(i,
                          '_ages/')
   model_name   <- paste0(size,'_age_model_', 
                          i, 
-                         '.csv') 
+                         '.rds') 
   
-  model$CI |> 
-    add_column(model_no = paste0('model_', i)) |> 
-    add_column(true_age = true_age) |> 
-    write_csv(file = paste0(model_folder, model_name))
-} # end of function
-
-# run R in parallel ------------------------------------------------------------
-start <- Sys.time()
-
-clusterMap(cl = cl, 
-           fun = age_model,
-           size = tests$size, 
-           i = tests$i)
-
-stopCluster(cl)
-end <- Sys.time()
-
-print(end - start)
+  model |> 
+    write_rds(file = paste0(model_folder, model_name))
+  rm(model)
+  # run R in parallel ------------------------------------------------------------
+  start <- Sys.time()
+  
+  clusterMap(cl = cl, 
+             fun = age_model,
+             size = tests$size, 
+             i = tests$i)
+  
+  stopCluster(cl)
+  end <- Sys.time()
+  
+  print(end - start)
+  
