@@ -109,3 +109,6 @@ stopCluster(cl)
 end <- Sys.time()
 
 print(end - start)
+
+read_rds(file = file_list[100]) |> 
+  plot(type = 'age_depth')
