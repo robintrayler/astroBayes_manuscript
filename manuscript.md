@@ -39,11 +39,15 @@ A common problem when constructing a chronology from a the rock record is how be
 
 <!-- Steve can write this --> 
 
+
+
+
 ## Radioisotope Geochronology
 
 <!-- Mark can write this --> 
 
-## Bayesian Modeling
+
+## Bayesian Age-Depth Modeling
 
 Bayesian statistics aims to determine the most probable values of unknown parameters given data and prior information about those parameters. This is formalized in Bayes equation: 
 
@@ -51,11 +55,16 @@ $$P(parameters | data) \propto P(data | parameters) \times P(parameters)$$ {#eq:
 
 The first term on the righthand side of @eq:bayes, known as the likelihood, is the conditional probability of the data, given a set of parameters, and the second term represents any prior beliefs about these parameters. The lefthand side of @eq:bayes is the posterior probability of the parameters. In other words, how probable are the proposed parameters given a data set and our prior knowledge. Bayes equation is often difficult or impossible to solve analytically, and instead the posterior distribution is simulated using Markov Chain Monte Carlo methods (MCMC) to generate a random representative sample. Given a large enough samples size and adequate exploration of parameter space, this sample should have the same properties (mean, median, dispersion, etc.) as the true posterior distribution [@gelman1996]. 
 
-## Bayesian Age-Depth Modeling
-
 Developing chronologies for rock records rely on models (age-depth models) that relate stratigraphic position to age. This is usually accomplished by fitting a curve to several dated horizons throughout a stratigraphic section which is then used to estimate the age and uncertainty at undated points [@blaauw2012]. A variety of Bayesian approaches have been proposed to fit age-depth models including `Bchron` [@haslett2008] `bacon` [@blaauw2011]`OxCal` [@bronkramsey2008], and `chron.jl` [@schoene2019]. While these methods vary considerably in their mathematical framework, most they share two fundamental characteristics. First, they treat sediment accumulation as a stochastic process where accumulation rate is allowed to vary randomly and considerably throughout a stratigraphic section. Second, they rely on discrete point-estimates of absolute age, usually in the form of radioisotopic dates (e.g., ^40^Ar/^39^Ar, U-Pb, ^14^C), as the for chronology construction. This leads to chronologies with widely variable uncertainties [@trachsel2017; @telford2004; @devleeschouwer2014] that are largely a function of data density. That is, model errors are lower in areas where there are more age determinations and higher in areas with less data, leading to "sausage" shaped uncertainties [@devleeschouwer2014]. Incorporating more chronologic information is the best way to improve model accuracy and reduce uncertainty [@blaauw2018], however, this is not always possible. While some records are amenable to almost continuous radioisotopic dating (e.g., ^14^C analysis of peat cores), dating most deep-time stratigraphic sections relies on the presence of volcanic ashes, which usually occur in only a few horizons. Since the density of radioisotopic ages is unlikely to change in most deep-time cases, incorporating other forms of chronologic information is crucial to improving age-depth models.
 
-In our case our data consists of measurements of an astrochronologic record (*data*) (e.g., δ^18^O, XRF scans, core resistivity, etc), and a set of radioisotopic dates (*dates*) that share a common stratigraphic scale. Developing an age depth model from these records requires 1) a likelihood function that reflects the probability of both data types, 2) a common set of parameters to calculate the probability of, and 3) in the case of age-depth modeling, a model that reflects our best understanding of sediment accumulation. 
+Previous integrations of astrochronology and radioisotopic geochronology have focused on anchoring floating chronologies, and incorporating astrochronologicaly derived duration
+
+Previous integrations of astrochronology and radioisotopic geochronology have focused on either anchoring floating astrochronologies to radioisotopic dates or incorporating astrochronologically derived duration into model construction. @meyers2012 calibrated the age of the Cenomanian-Turonian boundary using a "stacked bed" algorithm [@buck1991] that respects both superposition and astrochronologic durations between the dates and the boundary position.
+
+@devleeschouwer2014 recalibrated the Devonian time scale and calculated new stage boundaries using a two step process. First the authors generated a bayesian age-depth model using the  `bchron` `R` package [@haslett2008] and the performed a post-hoc rejection of model iterations that violated previously derived astrochronologic stage durations. While these results are consistent with both data types the inclusion of astrochronology was not explicitly Bayesian. @harrigan2021 further refined the Devonian by using a modified version of `bchron`. In this case the authors used a Monte Carlo approach to convert astrochronology derived durations into stage boundary ages which were then included as inputs for Bayesian modeling using `Bchron`. 
+
+Each of these methods requires some external processing and interpretation of astrochronologic data, either to derive durations or to transform it into a from (i.e. age±uncertainty) that is amenable to inclusion into existing models.  
+
 
 # Methods
 
@@ -63,13 +72,14 @@ In our case our data consists of measurements of an astrochronologic record (*da
 
 ![Schematic of model parameters.](./figures/workflow.pdf){#fig:workflow width=100%}
 
-We focus on estimating the probability of sedimentation rate as the basis for our age-depth model. Since sedimentation rate is expressed as depth-per-time (e.g., m/Ma, cm/ky) it directly links stratigraphic position to relative age to create floating age models, and when combined with radioscopic dates, models anchored in numerical time. 
+Our data consists of measurements of an astrochronologic record (*data*) (e.g., δ^18^O, XRF scans, core resistivity, etc), and a set of radioisotopic dates (*dates*) that share a common stratigraphic scale. Developing an age depth model from these records requires 1) a likelihood function that reflects the probability of both data types, 2) a common set of parameters to calculate the probability of, and 3) in the case of age-depth modeling, a model that reflects our best understanding of sediment accumulation. We focus on estimating the probability of sedimentation rate as the basis for our age-depth model. Since sedimentation rate is expressed as depth-per-time (e.g., m/Ma, cm/ky) it directly links stratigraphic position to relative age to create floating age models, and when combined with radioscopic dates, models anchored in numerical time. 
 
 Existing Bayesian age depth models (discussed above) model sedimentation as a relatively large number of piecewise linear segments. Sedimentation rate can vary substantially between segments, leading to the "sausage-shaped" uncertainty envelopes that characterize these models [@trachsel2017; @devleeschouwer2014; @parnell2011]. However, this mode of sedimentation is not ideal for the construction of astrochronologies, as fluctuations in sedimentation rate can be mapped to astrochronologic cycles even if they are unrelated. Instead a sedimentation model for astrologic tuning should minimize fine-scale fluctuations in sedimentation rate [@muller2002; @malinverno2010]. We therefore adopt a relatively simple sedimentation model with a few layers of consistent sedimentation rate. 
 
 @malinverno2010 presented a simple sedimentation model appropriate for orbital tuning of sedimentary records and we use their framework as the basis for our joint inversion. The sedimentation model consists of two sets of parameters. The first is a vector of sedimentation rates (*r*), and stratigraphic boundary positions (*z*) that define regions of constant sedimentation (@fig:workflow A). For example, the model shown in @fig:workflow A has 11 parameters, five sedimentation rates (r~1~ to r~i~) and six layer boundaries (z~1~ to z~i~). This model formulation allows step changes in sedimentation rate at layer boundaries (*z*) but otherwise hold sedimentation rate (*r*) within each layer. 
 
 Together *r* and *z* can also be transformed to create an age-depth model consisting of piecewise linear segments that form a floating age-depth model (@fig:workflow B). This floating model can be linked to absolute time by adding a constant age (*a*) to the floating model at every stratigraphic position.   This age (*a*) acts as an anchor to link the floating age model to absolute time. Optionally, sedimentary hiatuses can also be included in the model in a similar manner by adding the duration of the hiatus (*h*) to the all the points of the anchored blade below the stratigraphic position of the hiatus.
+
 
 | parameter |                          explanation                             |
 |:---------:|:-----------------------------------------------------------------|
@@ -150,6 +160,25 @@ We tested the sensitivity of our model to both the number and stratigraphic posi
 |          |         8       |                    |
 
 Table: Proportion of the synthetic sedimentation model contained within the 95% credible interval of the model posterior with an increasing number of dates. The dates were drawn directly from the sedimentation model with no outlier ages. {#tbl:contained}
+
+
+
+# Discussion
+
+### Hiatus Duration Estimation
+
+![Hiatus duration versus the stratigraphic distance between the hiatus and the nearest radioisotope date for the CIP2 data set. The points are the model median and the error bars are the 95% credible interval. The red line is the true hiatus duration of 0.203 Ma. A-D) Models with 2, 4, 6, and 8 ages respectively.](./figures/hiatus_duration.pdf){#fig:hiatus_duration width=50%}
+
+The ability to estimate hiatus durations is a significant strength of our modeling framework. Hiatuses in stratigraphic records significantly complicate the interpretation of biologic and geochemical proxy records. Detecting and resolving the duration of hiatuses is therefore important to ensuring the accuracy of age-depth models. In principle, hiatuses can be detected and quantified from cyclostratigraphic records alone [@meyers2004; @meyers2019]. However, these approaches can be skewed towards minimum hiatus duration and are sensitive to distortions of the astrologic signal from other non-hiatus sources @meyers2004]. Our approach relies on both astrochronology and radioisotopic geochronology to estimate the duration of one or more hiatuses with astrochronology controlling the sedimentation rate (slope) and radioisotopic geochronology controlling the absolute duration (intercept(s)). This approach requires that at least two dates bracket a given hiatus. 
+
+Since the CIP2 data set includes a significant hiatus [@sinnesael2019] we investigated the influence of the number and stratigraphic position of radioisotopic dates on the quantification of the hiatus duration. For each of the sensitivity validation models (2, 4, 6, and 8 dates) we calculated the stratigraphic distance between the hiatus and the nearest date (@fig:hiatus_duration). Other than the requirement that there is at least one date above and below the hiatus, the stratigraphic position of the dates does not appear to have a strong influence on hiatus quantification as in all cases the model posterior of hiatus duration contained the true duration of 0.203 Ma. 
+
+
+## Sedimentation models and constraining uncertainty 
+
+A potential criticism of our approach is that our choice of a simple sedimentation model artificially influences overall model uncertainties. Since we do not allow sedimentation rate to vary randomly throughout stratigraphy our models lack the "sausage-like" credible intervals that characterize other Bayesian age depth models (i.e, `bchron`, `bacon`). Indeed,  @haslett2008 consider a minimal assumptions of smoothness as a fundamental feature of age-depth modeling as there is "*is no reason a priori to exclude either almost flat or very steep sections*".  While @blaauw2011 considers some smoothness, as expressed by the rate-of-change of sedimentation rate, as a desirable feature, both modeling approaches allow sedimentation rate to vary randomly in the absence of other constraints. 
+
+Astrochronology provides a clear, strong constraint on both absolute and spatial variations in sedimentation rate. Orbital tuning should not involve frequent changes in sedimentation rate as these can cause fluctuations unrelated to orbital frequencies [@muller2002; @malinverno2010]. In principle our underlying probability calculations could be applied to any sedimentation model, however...
 
 # Random Notes 
 * Several bayesian models are available to fit age-depth models to radioisotope geochronology data including `OxCal` [@bronkramsey2008], `Bchron` [@haslett2008] `Bacon` [@blaauw2011], and `Chron.jl` [@schoene2019]. Each modeling framework takes a slightly different approach to model fitting but they each focus on fitting models to radioisotopic geochronology data alone. 
