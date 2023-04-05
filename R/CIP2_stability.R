@@ -27,11 +27,15 @@ clusterEvalQ(cl = cl, {
                                  sed_min = c(7.5, 7.5, 10, 5),
                                  sed_max = c(15, 17.5, 20, 20))
   
-  geochron_data     <- data.frame(id        = c("sample_a", "sample_b",  "sample_c", "sample_d"),
-                                  age       = c(0.750, 0.589, 1.421, 1.361),
-                                  age_sd    = c(0.0113, 0.009, 0.0213, 0.0204),
-                                  position  = c(2.70, 0.91, 8.85, 7.99),
-                                  thickness = c(0, 0, 0, 0))
+  date_positions <- true_data[c(125, 350, 700, 950), ]
+  
+  geochron_data  <- # assemble into synthetic geochronology
+    data.frame(age = date_positions$age,
+               age_sd = date_positions$age * 0.015,
+               position = date_positions$position,
+               thickness = 0,
+               id = letters[1:4])  |> 
+    arrange(position)
 }
 )
 
