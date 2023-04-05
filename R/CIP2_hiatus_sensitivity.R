@@ -47,21 +47,22 @@ for(i in seq_along(file_list)) {
 storage <- storage |> 
   mutate(diff = median - 0.2025)
 
-
+pdf(file = './figures/hiatus_duration.pdf',
+    width = 3.5,
+    height = 3.5)
 storage |> 
   filter(median != 0) |> 
   ggplot(mapping = aes(x = delta, 
                        y = median,
                        ymax = CI_97.5,
-                       ymin = CI_2.5,
-                       color = factor(n_ages))) + 
-  geom_pointrange(alpha = 0.1, show.legend = FALSE) + 
+                       ymin = CI_2.5)) + 
+  geom_pointrange(alpha = 0.05, show.legend = FALSE) + 
   ylim(0, 0.4) + 
   facet_wrap(~n_ages) + 
   geom_hline(yintercept = 0.2025,
-             linetype = 'dashed') + 
+             linetype = 'dashed',
+             color = 'red',
+             size = 1) + 
   xlab(expression(Delta*'hiatus-date (m)')) + 
-  ylab('hiatus duration (Ma)') + 
-  scale_color_viridis(option = 'plasma',
-                      discrete = TRUE, 
-                      end = 0.8)
+  ylab('hiatus duration (Ma)')
+dev.off()
