@@ -2,7 +2,7 @@
 library(tidyverse)
 library(astroBayes)
 library(viridis)
-theme_set(theme_minimal())
+source('./R/plot_settings.R')
 # load all the data -----------------------------------------------------------
 two_ages <- list.files('./results/random_age_validation/CIP2_2_ages',
                         full.names = TRUE, 
@@ -38,31 +38,30 @@ for(i in seq_along(file_list)) {
   storage$delta[i] <- (model$geochron_data$position - hiatus_position) |> 
     abs() |> 
     min()
-  
-  
-  
+
   rm(model)
 }
 
-storage <- storage |> 
-  mutate(diff = median - 0.2025)
 
 pdf(file = './figures/hiatus_duration.pdf',
-    width = 3.5,
-    height = 3.5)
+    width = 4,
+    height = 4)
 storage |> 
   filter(median != 0) |> 
   ggplot(mapping = aes(x = delta, 
                        y = median,
                        ymax = CI_97.5,
                        ymin = CI_2.5)) + 
-  geom_pointrange(alpha = 0.05, show.legend = FALSE) + 
+  geom_point(alpha = 0.1,
+             size = 0.5) + 
+  geom_linerange(alpha = 0.05, 
+                  show.legend = FALSE) + 
   ylim(0, 0.4) + 
   facet_wrap(~n_ages) + 
   geom_hline(yintercept = 0.2025,
              linetype = 'dashed',
              color = 'red',
-             size = 1) + 
+             linewidth = 1) + 
   xlab(expression(Delta*'hiatus-date (m)')) + 
   ylab('hiatus duration (Ma)')
 dev.off()
