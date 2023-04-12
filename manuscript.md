@@ -70,7 +70,7 @@ Our data consists of measurements of an astrochronologic record (*data*) (e.g., 
 
 Existing Bayesian age depth models (discussed above) model sedimentation as a relatively large number of piecewise linear segments. Sedimentation rate can vary substantially between segments, leading to the "sausage-shaped" uncertainty envelopes that characterize these models [@trachsel2017; @devleeschouwer2014; @parnell2011]. However, this mode of sedimentation is not ideal for the construction of astrochronologies, as fluctuations in sedimentation rate can be mapped to astrochronologic cycles even if they are unrelated. Instead a sedimentation model for astrologic tuning should minimize fine-scale fluctuations in sedimentation rate [@muller2002; @malinverno2010]. We therefore adopt a relatively simple sedimentation model with a few layers of consistent sedimentation rate. 
 
-@malinverno2010 presented a simple sedimentation model appropriate for orbital tuning of sedimentary records and we use their framework as the basis for our joint inversion. The sedimentation model consists of two sets of parameters. The first is a vector of sedimentation rates (*r*), and stratigraphic boundary positions (*z*) that define regions of constant sedimentation (@fig:workflow A). For example, the model shown in @fig:workflow A has 11 parameters, five sedimentation rates (r~1~ to r~i~) and six layer boundaries (z~1~ to z~i~). This model formulation allows step changes in sedimentation rate at layer boundaries (*z*) but otherwise hold sedimentation rate (*r*) within each layer. 
+@malinverno2010 presented a simple sedimentation model appropriate for orbital tuning of sedimentary records and we use their framework as the basis for our joint inversion. The sedimentation model consists of two sets of parameters. The first is a vector of sedimentation rates (*r*), and stratigraphic boundary positions (*z*) that define regions of constant sedimentation (@fig:workflow A). For example, the model shown in @fig:workflow A has 11 parameters, five sedimentation rates (*r~1~* -- *r~i~*) and six layer boundaries (*z~1~* -- *z~i~*). This model formulation allows step changes in sedimentation rate at layer boundaries (*z*) but otherwise hold sedimentation rate (*r*) within each layer. 
 
 Together *r* and *z* can also be transformed to create an age-depth model consisting of piecewise linear segments that form a floating age-depth model (@fig:workflow B). This floating model can be linked to absolute time by adding a constant age (*a*) to the floating model at every stratigraphic position.   This age (*a*) acts as an anchor to link the floating age model to absolute time. Optionally, sedimentary hiatuses can also be included in the model in a similar manner by adding the duration of the hiatus (*h*) to the all the points of the anchored blade below the stratigraphic position of the hiatus.
 
@@ -142,22 +142,26 @@ Since the CIP2 data set includes a significant hiatus [@sinnesael2019] we invest
 
 ## Model Validation
 
+![Example age-depth models with randomly placed dates for both testing data sets. In all panels dates are represented by the colored Gaussian distributions, the black line is the model median and the shaded gray area is the 95% credible interval. The dashed red line is the true solution as shown in @fig:TD1 and @fig:CIP2. Panels A - D) 2, 4, 6, and 8 date models for the TD1 data. Panels E - H) 2, 4, 6, and 8 date models for the CIP2 data. Note that the left and right columns have different vertical and horizontal scales.](./figures/random_models.pdf){#fig:random_models height=75%}
+
 Reproducibility tests indicated that our model converges quickly and its parameter estimates remain stable. Individual trace plots for for each parameter (sedimentation rates, anchor age, hiatus duration) for the TD1 and CIP2 data sets stabilized quickly and appeared visually well mixed indicating adequate exploration of parameter space (**see supplements figures XYZ**). Similarly, kernel density estimates of each parameter were indistinguishable among the 1,000 simulations. The model median and 95% credible interval were likewise stable, and varied only slightly (± 0.XXX Ma; 2 sd). 
 
-The model does not appear to be particularly sensitive to the number or stratigraphic position of radioisotopic dates for both testing data sets. In nearly all cases the true age model fell within the models 95% credible interval (@tbl:contained}. For the CIP2 data set, other than the requirement that there is at least one date above and below the hiatus, the stratigraphic position of the dates does not appear to have a strong influence on hiatus quantification as in all cases the model posterior of hiatus duration contained the true duration of 0.203 Ma. with 95% CI of the duration parameter containing the true hiatus duration (0.203 Ma) in all cases (@fig:hiatus_duration). 
+The model does not appear to be particularly sensitive to the number or stratigraphic position of radioisotopic dates for both testing data sets (@fig:random_models). The true age model fell within the models 95% credible interval of the model posterior 99% of the time (@tbl:contained) and there is no clear bias toward a fewer or greater number of dates. 
+
+For the CIP2 data set, other than the requirement that there is at least one date above and below the hiatus, the stratigraphic position of the dates does not appear to have a strong influence on hiatus quantification as in all cases the model posterior of hiatus duration contained the true duration of 0.203 Ma. with 95% CI of the duration parameter containing the true hiatus duration (0.203 Ma) in all cases (@fig:hiatus_duration). 
 
 | data set | number of dates | fraction contained |
 |:--------:|:---------------:|:------------------:|
-|   TD-1   |         2       |         wxyz       |
-|          |         4       |         wxyz       |
-|          |         6       |         wxyz       |
-|          |         8       |         wxyz       |
-|  CIP-2   |         2       |         wxyz       |
-|          |         4       |         wxyz       |
-|          |         6       |         wxyz       |
-|          |         8       |         wxyz       |
+|   TD1    |         2       |        0.993       |
+|          |         4       |        0.994       |
+|          |         6       |        0.993       |
+|          |         8       |        0.994       |
+|   CIP2   |         2       |        0.992       |
+|          |         4       |        0.991       |
+|          |         6       |        0.994       |
+|          |         8       |        0.993       |
 
-Table: Proportion of the synthetic sedimentation model contained within the 95% credible interval of the model posterior with an increasing number of dates. The dates were drawn directly from the sedimentation model with no outlier ages. {#tbl:contained}
+Table: Proportion of the synthetic sedimentation model contained within the 95% credible interval of the model posterior with an increasing number of dates.{#tbl:contained}
 
 # Discussion
 
