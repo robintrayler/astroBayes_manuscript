@@ -30,7 +30,7 @@ TD_model_2_plot <- plot(TD1_2, type = 'age_depth') +
         axis.text.x = element_blank())
 
 # 4 ages ----------------------------------------------------------------------
-TD1_4 <- read_rds(file = './results/random_age_validation/TD1_4_ages/4_age_model_555.rds')
+TD1_4 <- read_rds(file = './results/random_age_validation/TD1_4_ages/4_age_model_273.rds')
 TD_model_4_plot <- plot(TD1_4, type = 'age_depth') + 
   theme_custom + 
   theme(legend.position = 'none') + 
@@ -97,7 +97,7 @@ CIP_model_2_plot <- plot(CIP_model_2, type = 'age_depth') +
             inherit.aes = FALSE,
             color = 'red',
             linetype = 'dashed') + 
-  xlim(0.45, 1.51) +
+  xlim(0.45, 1.55) +
   ylim(10, -1.5) + 
   theme(axis.title.x = element_blank(),
         axis.text.x = element_blank(),
@@ -116,7 +116,7 @@ CIP_model_4_plot <- plot(CIP_model_4, type = 'age_depth') +
             inherit.aes = FALSE,
             color = 'red',
             linetype = 'dashed') + 
-  xlim(0.45, 1.51) +
+  xlim(0.45, 1.55) +
   ylim(10, -1.5) + 
   theme(axis.title.x = element_blank(),
         axis.text.x = element_blank(),
@@ -135,7 +135,7 @@ CIP_model_6_plot <- plot(CIP_model_6, type = 'age_depth') +
             inherit.aes = FALSE,
             color = 'red',
             linetype = 'dashed') + 
-  xlim(0.45, 1.51) +
+  xlim(0.45, 1.55) +
   ylim(10, -1.5) + 
   theme(axis.title.x = element_blank(),
         axis.text.x = element_blank(),
@@ -154,14 +154,14 @@ CIP_model_8_plot <- plot(CIP_model_8, type = 'age_depth') +
             inherit.aes = FALSE,
             color = 'red',
             linetype = 'dashed') + 
-  xlim(0.45, 1.51) +
+  xlim(0.45, 1.55) +
   ylim(10, -1.5) + 
   theme(axis.title.y = element_blank())
 
 
 
 pdf(file = './figures/random_models.pdf',
-    width = 6.5,
+    width = 4.5,
     height = 8.5)
 plot_grid(TD_model_2_plot, CIP_model_2_plot,
           TD_model_4_plot, CIP_model_4_plot,
@@ -169,5 +169,7 @@ plot_grid(TD_model_2_plot, CIP_model_2_plot,
           TD_model_8_plot, CIP_model_8_plot,
   ncol = 2,
   align = 'hv',
-  labels = 'AUTO')
+  labels = c('A', 'E', 'B', 'F', 'C', 'G', 'D', 'H' ),
+  label_x = 0.85,
+  label_y = 0.97)
 dev.off()
