@@ -6,6 +6,6 @@ theme_custom <- theme_minimal() +
         axis.text = element_text(size = 10),
         panel.border = element_rect(fill = NA, color = 'black'),
         panel.grid.minor = element_blank(),
-        plot.margin = unit(c(0.1, 0.1, 0.1, 0.1), "cm"))
+        plot.margin = unit(c(0, .25, 0, 0.1), "cm"))
 
 theme_set(theme_custom)
