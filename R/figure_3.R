@@ -2,10 +2,15 @@ library(tidyverse)
 source('./R/plot_settings.R')
 library(cowplot)
 library(viridis)
-
+library(astroBayes)
+# load required data ----------------------------------------------------------
 CIP2 <- read_csv('./data/CIP2/cyclostrat_data.csv')
 CIP2_true <- read_csv('./data/CIP2/true_age.csv')
 
+# load some example models ----------------------------------------------------
+
+
+# EHA plot --------------------------------------------------------------------
 eha_results <- astrochron::eha(CIP2,
                                win = 2,
                                step = .1,
