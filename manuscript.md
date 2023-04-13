@@ -118,6 +118,10 @@ The overall likelihood function of an anchored age-depth model is the joint prob
 
 We implemented our model as an `R` package. We estimated the most probable values of sedimentation rate using a Metropolis-Hasting algorithm and an adaptive Markov Chain Monte Carlo (MCMC) [@haario2001]. 
 
+## Developing a Sedimentation Model
+
+Evolutive harmonic analysis is a time-frequency method that can identify temporal changes in stratigraphic records. Expressed as cycles/meters, high spectral-power regions may "drift" towards higher or lower frequencies throughout stratigraphy. Assuming these frequencies represent relatively stable astrological signals, the most likely explanation of those shifts is therefore spatial changes in sedimentation rate [@meyers2001]. We visually inspected EHA plots to develop a sedimentation model (e.g., @fig:workflow B) for our testing data sets. We chose layer boundary positions (z~1~ -- z~i~) by identifying regions with visually stable frequencies (see @fig:TD1 C, @fig:CPP2 C). We allow these boundary positions to vary randomly (within a specified range) to account for the uncertainties in boundary position. 
+
 ## Testing and Validation
 
 ![Testing data set 1 (TD1). A) The synthetic eccentricity-tilt-precession time series. B) The sedimentation model used as an Earth System transfer function to modify the time series in panel A. C) Evolutive harmonic analysis of panel A. Lighter colors are higher spectral power. Note the variations in the high-power central frequency between about 2 - 4 cycles/meter as a result of sedimentation rate shifts shown in panel B.](./figures/TD1.pdf){#fig:TD1 width=100%}
@@ -146,9 +150,7 @@ Since the CIP2 data set includes a significant hiatus [@sinnesael2019] we invest
 
 Reproducibility tests indicated that our model converges quickly and its parameter estimates remain stable. Individual trace plots for for each parameter (sedimentation rates, anchor age, hiatus duration) for the TD1 and CIP2 data sets stabilized quickly and appeared visually well mixed indicating adequate exploration of parameter space (**see supplements figures XYZ**). Similarly, kernel density estimates of each parameter were indistinguishable among the 1,000 simulations. The model median and 95% credible interval were likewise stable, and varied only slightly (± 0.XXX Ma; 2 sd). 
 
-The model does not appear to be particularly sensitive to the number or stratigraphic position of radioisotopic dates for both testing data sets (@fig:random_models). The true age model fell within the models 95% credible interval of the model posterior 99% of the time (@tbl:contained) and there is no clear bias toward a fewer or greater number of dates. 
-
-For the CIP2 data set, other than the requirement that there is at least one date above and below the hiatus, the stratigraphic position of the dates does not appear to have a strong influence on hiatus quantification as in all cases the model posterior of hiatus duration contained the true duration of 0.203 Ma. with 95% CI of the duration parameter containing the true hiatus duration (0.203 Ma) in all cases (@fig:hiatus_duration). 
+Model accuracy does not appear to be particularly sensitive to the number or stratigraphic position of radioisotopic dates (@fig:random_models). The true age model fell within the 95% credible interval of the the model posterior 99% of the time (@tbl:contained) with no clear bias towards a fewer or greater number of dates. 
 
 | data set | number of dates | fraction contained |
 |:--------:|:---------------:|:------------------:|
@@ -162,6 +164,8 @@ For the CIP2 data set, other than the requirement that there is at least one dat
 |          |         8       |        0.993       |
 
 Table: Proportion of the synthetic sedimentation model contained within the 95% credible interval of the model posterior with an increasing number of dates.{#tbl:contained}
+
+For the CIP2 data set, other than the requirement that there is at least one date above and below the hiatus, the stratigraphic position of the dates does not appear to have a strong influence on hiatus quantification and in all cases the true hiatus duration (0.203 Ma) was contained within the 95% CI of the hiatus duration parameter (*h*; @fig:hiatus_duration). 
 
 # Discussion
 
