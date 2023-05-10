@@ -8,7 +8,8 @@ TD1_true <- read_csv('./data/TD1/true_age.csv')
 CIP2_true <- read_csv('./data/CIP2/true_age.csv')
 
 make_plot <- function(rds, xlim = c(0, 2.1), 
-                      ylim = c(20, 0)) {
+                      ylim = c(20, 0),
+                      true_data = NA) {
   dates <- rds$geochron_data
   range <- -seq(min(rds$segment_edges$position), max(rds$segment_edges$position), length = 500)
   # make a bchron model
@@ -26,7 +27,7 @@ make_plot <- function(rds, xlim = c(0, 2.1),
     theme(legend.position = 'none') + 
     xlab('Age (Ma)') + 
     ylab('Depth (m)') + 
-    geom_line(data = TD1_true,
+    geom_line(data = true_data,
               mapping = aes(x = age, 
                             y = position),
               inherit.aes = FALSE,
@@ -67,10 +68,10 @@ make_plot <- function(rds, xlim = c(0, 2.1),
 # TD1 models ##################################################################
 ###############################################################################
 # 2 ages ----------------------------------------------------------------------
-TD1_2 <- make_plot(read_rds(file = './results/random_age_validation/TD1_2_ages/2_age_model_983.rds'))
-TD1_4 <- make_plot(read_rds(file = './results/random_age_validation/TD1_4_ages/4_age_model_273.rds'))
-TD1_6 <- make_plot(read_rds(file = './results/random_age_validation/TD1_6_ages/6_age_model_226.rds'))
-TD1_8 <- make_plot(read_rds(file = './results/random_age_validation/TD1_8_ages/8_age_model_881.rds'))
+TD1_2 <- make_plot(read_rds(file = './results/random_age_validation/TD1_2_ages/2_age_model_983.rds'), true_data = TD1_true)
+TD1_4 <- make_plot(read_rds(file = './results/random_age_validation/TD1_4_ages/4_age_model_273.rds'), true_data = TD1_true)
+TD1_6 <- make_plot(read_rds(file = './results/random_age_validation/TD1_6_ages/6_age_model_226.rds'), true_data = TD1_true)
+TD1_8 <- make_plot(read_rds(file = './results/random_age_validation/TD1_8_ages/8_age_model_881.rds'), true_data = TD1_true)
 
 ###############################################################################
 # CIP2 models #################################################################
@@ -78,41 +79,33 @@ TD1_8 <- make_plot(read_rds(file = './results/random_age_validation/TD1_8_ages/8
 # 2 ages ----------------------------------------------------------------------
 CIP_model_2 <- make_plot(read_rds(file = './results/random_age_validation/CIP2_2_ages/2_age_model_983.rds'), 
                          xlim = c(0.45, 1.6), 
-                         ylim = c(10, -1.5))
+                         ylim = c(10, -1.5),
+                         true_data = CIP2_true)
 CIP_model_4 <- make_plot(read_rds(file = './results/random_age_validation/CIP2_4_ages/4_age_model_944.rds'), 
                          xlim = c(0.45, 1.6), 
-                         ylim = c(10, -1.5))
+                         ylim = c(10, -1.5),
+                         true_data = CIP2_true)
 CIP_model_6 <- make_plot(read_rds(file = './results/random_age_validation/CIP2_6_ages/6_age_model_400.rds'), 
                          xlim = c(0.45, 1.6), 
-                         ylim = c(10, -1.5))
+                         ylim = c(10, -1.5),
+                         true_data = CIP2_true)
 CIP_model_8 <- make_plot(read_rds(file = './results/random_age_validation/CIP2_8_ages/8_age_model_210.rds'), 
                          xlim = c(0.45, 1.6), 
-                         ylim = c(10, -1.5))
+                         ylim = c(10, -1.5),
+                         true_data = CIP2_true)
 
 
 
 pdf(file = './figures/random_models.pdf',
     width = 4.5,
     height = 8.5)
-plot_grid(TD_model_2_plot, CIP_model_2_plot,
-          TD_model_4_plot, CIP_model_4_plot,
-          TD_model_6_plot, CIP_model_4_plot,
-          TD_model_8_plot, CIP_model_8_plot,
+plot_grid(TD1_2, CIP_model_2,
+          TD1_4, CIP_model_4,
+          TD1_6, CIP_model_4,
+          TD1_8, CIP_model_8,
           ncol = 2,
           align = 'hv',
           labels = c('A', 'E', 'B', 'F', 'C', 'G', 'D', 'H' ),
           label_x = 0.85,
           label_y = 0.97)
 dev.off()
-
-
-plot_grid(CIP_model_2_plot,
-          CIP_model_4_plot,
-          CIP_model_6_plot,
-          CIP_model_8_plot,
-          ncol = 1,
-          align = 'hv',
-          labels = c('2', '4', '6', '8', ),
-          label_x = 0.85,
-          label_y = 0.97)
-
