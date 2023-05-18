@@ -101,7 +101,7 @@ pdf(file = './figures/random_models.pdf',
     height = 8.5)
 plot_grid(TD1_2, CIP_model_2,
           TD1_4, CIP_model_4,
-          TD1_6, CIP_model_4,
+          TD1_6, CIP_model_6,
           TD1_8, CIP_model_8,
           ncol = 2,
           align = 'hv',
