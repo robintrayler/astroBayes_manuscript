@@ -14,6 +14,7 @@ figPrefix: Figure
 secPrefix: Section
 autoEqnLabels: true
 link-citations: false
+from: markdown+mark
 indent: true
 header-includes:
     - \usepackage{lineno}
@@ -22,7 +23,7 @@ header-includes:
     - \doublespacing
 ---
 
-<!-- pandoc -s -o manuscript.pdf --pdf-engine=xelatex --filter pandoc-crossref --citeproc --number-sections manuscript.md --> 
+<!-- pandoc -s -f markdown+mark -o manuscript.pdf --pdf-engine=xelatex --filter pandoc-crossref --citeproc --number-sections manuscript.md--> 
 
 <!-- pandoc -s -o manuscript.docx --pdf-engine=xelatex --filter pandoc-crossref --citeproc --reference-doc=reference.docx manuscript.md --> 
 
@@ -45,11 +46,11 @@ Combining radioisotopic dates and floating astrochronolgic records into an integ
 
 ## Astrochronology
 
-**Steve can write this** 
+==Steve can write this==
 
 ## Radioisotope Geochronology
 
-**Mark can write this**
+==Mark can write this==
 
 ## Bayesian Statistics
 
@@ -67,7 +68,7 @@ Previous attempts to link astrochronology and radioisotopic dates have relied ei
 
 ## Case Study: Bridge Creek Limestone
 
-**This is mostly placeholder text. Steve please expand the this section as you see fit** 
+==This is mostly placeholder text. Steve please expand the this section as you see fit==
 
 The Bridge Creek Limestone is the uppermost member of the Greenhorn Formation of central Colorado. It is primarily composed of hemipelagic marlstones and limestone couplets that extend laterally for over 1,000 km in the Western Interior Basin [@elder1994]. These couplets are characterized by alternations from darker organic carbon rich laminated clay and mudstones to lighter carbonate rich, organic poor limestone facies. Previous work has reported Milankovich scale cyclicity in the Bridge Creek Limestone  and ^40^Ar/^39^Ar ages from several bentonites throughout the section [@sageman1998; @meyers2001; @meyers2012]. @meyers2012 previously calibrated the age of the Cenomanian-Turonian boundary as 93.90±0.15Ma (mean±95%CI) using a Bayesian "stacked bed" algorithm [@buck1991] that respects both superposition and astrochronologic durations between the dates and the boundary position.  
 
@@ -191,7 +192,7 @@ Clearly, our choice of a simple sedimentation model influences age-depth model c
 
 For example, @tbl:testing_dates contains the dates and stratigraphic positions used for inputs for TD1 stability testing (see @sec:stability). A time difference of 1.72 Ma between the uppermost and lowermost dates separated by 16.84 meters implies an average sedimentation rate of ~9.8 m/Ma or alternatively ~0.1 Ma/m. A sedimentation model with a layer thickness of 1 meter would unable to resolve long (~0.405 Ma) and short (~0.1 Ma) eccentricity cycles, and would only weakly resolve obliquity (~0.41 Ma) and precession scale cycles (~0.02 Ma) within each layer. The choice of layer thickness is therefore dependent on both the average sedimentation rate and the dominant astrologic signals present in the data. Records dominated by eccentricity and obliquity scale fluctuations will necessarily require layers thicknesses that capture longer timescales than records dominated by high frequency precession scale variations. 
 
-**Steve some discussion of nyquist frequency, sampling rates, etc could go here too**
+==Steve some discussion of nyquist frequency, sampling rates, etc could go here too==
 
 ## Hiatus Duration Estimation
 
@@ -227,15 +228,13 @@ We divided the Bridge Creek Limestone (@fig:ct_boundary A) into three layers bas
 
 We used the age-depth model to calculate the age of the Cenomanian-Turonian boundary as 93.90±0.14 Ma (median±95%CI). This age is essentially indistinguishable from the previous age of 93.90±0.15 Ma reported by @meyers2012, suggesting that `astroBayes` produces comparable results. Crucially however, our model provides a continuous record of age for the Bridge Creek Limestone which can be used to interpret the boundary ages and durations of several ammonite biozones present in the section [@meyers2012; @meyers2001] and foster correlations to other calibrated sections.
 
-**Are there other discussion points folks think I should hit here? I could calculate the age of the ammonite biozone boundaries for example.**
+==Are there other discussion points folks think I should hit here? I could calculate the age of the ammonite biozone boundaries for example.==
 
 # Conclusions
 
-I should put something here
-
 # Acknowledgements {.unnumbered}
 
-We thank Dr. Matthias Sinnesael for providing the Cyclostratigraphy Intercomparison Project data used for model testing. We also thank Dr. Jacob Anderson and Dr. Alberto Malinverno for insightful discussions during the development of this project. This work was supported by NSF-###-###### M.D. Schmitz. 
+We thank Dr. Matthias Sinnesael for providing the Cyclostratigraphy Inter-comparison Project data used for model testing. We also thank Dr. Jacob Anderson and Dr. Alberto Malinverno for insightful discussions during the development of this project. This work was supported by NSF-###-###### M.D. Schmitz. 
 
 \newpage
 
