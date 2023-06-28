@@ -236,12 +236,20 @@ We used the age-depth model to calculate the age of the Cenomanian-Turonian boun
 
 We thank Dr. Matthias Sinnesael for providing the Cyclostratigraphy Inter-comparison Project data used for model testing. We also thank Dr. Jacob Anderson and Dr. Alberto Malinverno for insightful discussions during the development of this project. This work was supported by NSF-###-###### (MDS) and NSF-EAR-1813278 (SRM). 
 
+# Author contribution {.unnumbered}
+
+RBT, and MDS conceived the project and developed the modeling framework with input from SRM. RBT wrote the code for the `astroBayes` `R` package and performed testing and validation with input from SRM and MDS. RBT wrote and edited the manuscript with input from SRM and MDS. 
+
 \newpage
 
 # References {.unnumbered}
 :::{#refs}
 :::
 
+\newpage
+
 # Supplemental Figures {.unnumbered}
 
-![Example age-depth models of the TD1 and CIP2 data sets with randomly placed dates shown as colored Gaussian distributions. The dates were randomly generated from the true age-depth model (dashed red line). The black line and shaded grey region are the `astroBayes` model median and 95% credible interval. The dark grey solid and dashed lines are `Bchron` models generated using only the dates as model inputs. Panels A - D) 2, 4, 6, and 8 date models for the TD1 data. Panels E - H) 2, 4, 6, and 8 date models for the CIP2 data. Note that the left and right columns have different vertical and horizontal scales.](./figures/final figures/random_models.pdf){#fig:random_models height=75%}
+![Superimposed trace plots of sedimentation rate for 50 randomly chosen models for the TD1 dataset. Different colors indicate different model runs. the vertical dashed line indicates the burn-in period.](./figures/final figures/supplemental_figures/TD1_trace.pdf){#fig:TD1_trace height=100%}
+
+![Superimposed kernel density estimates of the posterior distribution for each model parameter from 50 randomly chosen TD1 validation models. Different colors indicate different model runs.](./figures/final figures/supplemental_figures/TD1_density.pdf){#fig:TC1_density height=100%}
