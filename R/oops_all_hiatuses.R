@@ -86,7 +86,7 @@ age_model <- function(i,
   
   # write the model CI to a csv --------------------------
   
-  model_folder <- paste0('./results/random_age_validation/CIP2_', 
+  model_folder <- paste0('./results/stability_validation/CIP2_hiatus/CIP2_', 
                          size, 
                          '_ages/')
   model_name   <- paste0(size,'_age_model_', 
