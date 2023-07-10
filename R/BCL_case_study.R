@@ -59,8 +59,8 @@ model <- astro_bayes_model(geochron_data = geochron,
                            segment_edges = segment_edges,
                            cyclostrat_data = cyclostrat_2.5,
                            method = 'malinverno',
-                           iterations = 100000,
-                           burn = 1000)
+                           iterations = 1000000,
+                           burn = 10000)
 
 # calculate the age of the Cenomanian-Turonian boundary -----------------------
 new_positions = data.frame(id = 'CTB',
@@ -83,7 +83,6 @@ plot(predictions) +
   xlab('Age (Ma)') + 
   ylab('Depth (m)') + 
   guides(fill = guide_legend(ncol=2))
-dev.off()
 
 # inspect the trace and density plots of the posterior
 plot(model, type = 'trace')
