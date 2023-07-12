@@ -5,7 +5,7 @@ library(viridis)
 
 source('./R/plot_settings.R')
 # load all the data -----------------------------------------------------------
-validation_data <- list.files('./results/stability_validation/TD1/',
+validation_data <- list.files('./results/stability_validation/CIP2/',
                        full.names = TRUE, 
                        pattern = '*.rds') |> 
   sample(size = 50)
@@ -30,7 +30,7 @@ for(i in seq_along(validation_data)) {
 
 pdf(width = 4, 
     height = 4,
-    file = './figures/final figures/supplemental_figures/TD1_trace.pdf')
+    file = './figures/final figures/supplemental_figures/CIP2_trace.pdf')
 sed_rate <- sed_rate |> 
   reduce(rbind)
 
@@ -38,7 +38,7 @@ sed_rate |>
   ggplot(mapping = aes(x = iteration, 
                        y = sed_rate,
                        color = model)) +
-  facet_wrap(~layer) + 
+  facet_wrap(~layer, nrow = 2) + 
   geom_line(alpha = 0.1, show.legend = FALSE) + 
   scale_color_viridis(option = 'plasma', end = 0.9) + 
   geom_vline(xintercept = 1000,
@@ -50,14 +50,15 @@ dev.off()
 
 pdf(width = 4, 
     height = 4,
-    file = './figures/final figures/supplemental_figures/TD1_density.pdf')
+    file = './figures/final figures/supplemental_figures/CIP2_density.pdf')
 
 sed_rate |> 
   ggplot(mapping = aes(x = sed_rate, 
                        color = model,
                        group = model)) +
   facet_wrap(~layer, 
-             scales = 'free_y') + 
+             scales = 'free_y', 
+             nrow = 2) + 
   geom_density(alpha = 0.01, 
                show.legend = FALSE,
                fill = NA,
