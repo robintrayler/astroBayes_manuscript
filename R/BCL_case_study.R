@@ -13,7 +13,7 @@ cyclostrat <- read.csv(file = './data/BCL/cyclostratigraphic_record.csv') %>%
 geochron   <- read.csv(file = './data/BCL/radioisotopic_dates.csv')
 segment_edges <- read.csv(file = './data/BCL/segment_edges.csv')
 tuning <- read.csv(file = './data/BCL/tuning_frequency.csv')
-
+tuning_2 <- read.csv(file = './data/BCL/tuning_frequency2.csv')
 # prep the data ---------------------------------------------------------------
 cyclostrat_2.5 <- cyclostrat |>  
   linterp(dt = 0.025,             # re interpolate to 0.025 m resolution
@@ -25,7 +25,6 @@ cyclostrat_2.5 <- cyclostrat |>
 max_depth <- max(cyclostrat_2.5$position)
 cyclostrat_2.5$position <- abs(cyclostrat_2.5$position - max_depth)
 geochron$position       <- abs(geochron$position - max_depth)
-
 
 # evolutive harmonic analysis -------------------------------------------------
 eha_results <- tidy_eha(cyclostrat_2.5, 
@@ -59,8 +58,16 @@ model <- astro_bayes_model(geochron_data = geochron,
                            segment_edges = segment_edges,
                            cyclostrat_data = cyclostrat_2.5,
                            method = 'malinverno',
-                           iterations = 1000000,
-                           burn = 10000)
+                           iterations = 50000,
+                           burn = 5000)
+
+model <- astro_bayes_model(geochron_data = geochron,
+                           tuning_frequency = tuning_2,
+                           segment_edges = segment_edges,
+                           cyclostrat_data = cyclostrat_2.5,
+                           method = 'malinverno',
+                           iterations = 50000,
+                           burn = 5000)
 
 # calculate the age of the Cenomanian-Turonian boundary -----------------------
 new_positions = data.frame(id = 'CTB',
