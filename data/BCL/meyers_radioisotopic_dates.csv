@@ -1,0 +1,5 @@
+id,age,age_sd,height,depth,position,thickness,source
+bentonite_A,94.2,0.14,1.62,10.55,10.55,0,"meyers et al., 2012"
+bentonite_B,94.1,0.135,3.3,8.87,8.87,0,"meyers et al., 2012"
+bentonite_C,93.79,0.13,5.95,6.22,6.22,0,"meyers et al., 2012"
+bentonite_D,93.67,0.155,6.98,5.19,5.19,0,"meyers et al., 2012"

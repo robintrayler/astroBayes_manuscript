@@ -1,0 +1,5 @@
+id,age,age_sd,height,depth,position,thickness,sample,source
+bentonite_A,94.2,0.14,1.62,10.55,10.55,0,"AZLP-08Ð02, 90-O-31 ",Meyers et al. (2012)
+bentonite_B,93.99,0.11,3.3,8.87,8.87,0,K07-01B,Jicha et al. (2016)
+bentonite_C,94.022,0.102,5.95,6.22,6.22,0,K-07-01-C ,Jones et al. (2021)
+bentonite_D,93.799,0.077,6.98,5.19,5.19,0,90-O-34,Jones et al. (2021)
