@@ -1,16 +1,17 @@
 # Bayesian Integration of Astrochronology and Radioisotope Geochronology
 
-[![DOI](https://zenodo.org/badge/411031242.svg)](https://zenodo.org/badge/latestdoi/411031242)
+This repository contains the data, code, and manuscript editing history for 
 
-This repository contains the data, code, and manuscript editing history for **Trayler, R. B., Meyers, S. R., Sageman, B. B., Schmitz, M. D., (in prep) *Bayesian Integration of Astrochronology and Radioisotope Geochronology***. 
+**Trayler, R. B., Meyers, S. R., Sageman, B. B., Schmitz, M. D., (in prep) *Bayesian Integration of Astrochronology and Radioisotope Geochronology***. 
 
-The code an installation instructions for the `{astroBayes}` `R` package can be found at [github.com/robintrayler/astroBayes](https://github.com/robintrayler/astroBayes). 
+The code, installation instructions, and user guide for the `{astroBayes}` `R` package can be found at [github.com/robintrayler/astroBayes](https://github.com/robintrayler/astroBayes). 
 
 ## File Structure 
+Below is a breakdown of the files and R scripts in this repository. If you would like to reproduce the tests in the manuscript run the scripts in the `./R/` directory *in the order listed* below. 
 
+**!!WARNING!!**, these scripts are designed to be run in parallel on a fairly powerful desktop computer or cluster. They will take several days to weeks to complete otherwise and will generate approximately 1 terabyte of results files. It is not recommended to run them on a personal laptop
 
 ```
-.
 ├── data
     └── BCL # data for Bridge Creek Limestone case study
         └── cyclostratigraphic_record.csv   # greyscale data
@@ -46,11 +47,10 @@ The code an installation instructions for the `{astroBayes}` `R` package can be 
 ├── results # contains the model results for stability and validation models
     └── stability_validation # contains the outputs of CIP2_stability.R and TD1_stability.R
     └── random_age_validation # contains the outputs of CIP2_validation.R and TD1_validation.R 
-├── manuscript.md         # pandoc markdown formatted manuscript
-└── README.md
+├── manuscript.md             # pandoc markdown formatted manuscript
 ```
 
-## Manuscript
+## Manuscript Structure
 
 This manuscript is written in [`Pandoc`](https://pandoc.org) flavored markdown. Follow the instructions [here](https://pandoc.org/installing.html) to install `pandoc`. The manuscript also relies on the [`pandoc-crossref`](https://github.com/lierdakil/pandoc-crossref) filter to handle figure, table, and section numbering. 
 
