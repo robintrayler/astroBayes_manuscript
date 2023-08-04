@@ -10,7 +10,7 @@ The code, installation instructions, and user guide for the `{astroBayes}` `R` p
 Below is a breakdown of the files and R scripts in this repository. If you would like to reproduce the tests in the manuscript run the scripts in the `./R/` directory *in the order listed* below. 
 
 ## **!!WARNING!!** 
-These scripts are designed to be run in parallel on a fairly powerful desktop computer or cluster. They will take several days to weeks to complete otherwise and will generate approximately 1 terabyte of results files. It is not recommended to run them on a personal laptop
+These scripts are designed to be run in parallel on a fairly powerful desktop computer or cluster. **Otherwise, they will take several days or weeks to complete and will generate approximately 1 terabyte of results files**. It is not recommended to run them on a personal laptop. 
 
 ```
 ├── data
