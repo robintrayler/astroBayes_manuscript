@@ -53,7 +53,7 @@ These scripts are designed to be run in parallel on a fairly powerful desktop co
 
 ## Manuscript Structure
 
-This manuscript is written in [`Pandoc`](https://pandoc.org) flavored markdown. Follow the instructions [here](https://pandoc.org/installing.html) to install `pandoc`. The manuscript also relies on the [`pandoc-crossref`](https://github.com/lierdakil/pandoc-crossref) filter to handle figure, table, and section numbering. 
+This manuscript is written in [`Pandoc`](https://pandoc.org) flavored markdown. Follow the instructions [here](https://pandoc.org/installing.html) to install `Pandoc`. The manuscript also relies on the [`pandoc-crossref`](https://github.com/lierdakil/pandoc-crossref) filter to handle figure, table, and section numbering. 
 
 The manuscript file, `manuscript.md` can be compiled into a nicely formatted PDF by running the following pandoc command.
 
