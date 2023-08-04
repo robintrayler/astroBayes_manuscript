@@ -64,33 +64,33 @@ eha_results %>%
              linetype = 'dashed')
 
 # run astro bayes -------------------------------------------------------------
-# meyers_model <- astro_bayes_model(geochron_data = geochron_meyers,
-#                                   tuning_frequency = tuning,
-#                                   segment_edges = segment_edges,
-#                                   cyclostrat_data = cyclostrat_2.5,
-#                                   method = 'malinverno',
-#                                   iterations = 500000,
-#                                   burn = 50000)
-# write_rds(meyers_model, 
-#           file = 'meyers_model.rds')
-# updated_model <- astro_bayes_model(geochron_data = geochron_updated,
-#                                  tuning_frequency = tuning,
-#                                  segment_edges = segment_edges,
-#                                  cyclostrat_data = cyclostrat_2.5,
-#                                  method = 'malinverno',
-#                                  iterations = 500000,
-#                                  burn = 50000)
-# write_rds(updated_model, 
-#           file = 'updated_model.rds')
+meyers_model <- astro_bayes_model(geochron_data = geochron_meyers,
+                                  tuning_frequency = tuning,
+                                  segment_edges = segment_edges,
+                                  cyclostrat_data = cyclostrat_2.5,
+                                  method = 'malinverno',
+                                  iterations = 500000,
+                                  burn = 50000)
+write_rds(meyers_model,
+          file = './results/BCL_case_study/meyers_model.rds')
+updated_model <- astro_bayes_model(geochron_data = geochron_updated,
+                                 tuning_frequency = tuning,
+                                 segment_edges = segment_edges,
+                                 cyclostrat_data = cyclostrat_2.5,
+                                 method = 'malinverno',
+                                 iterations = 500000,
+                                 burn = 50000)
+write_rds(updated_model,
+          file = './results/BCL_case_study/updated_model.rds')
 
-updated_model <- read_rds(file = 'updated_model.rds')
-meyers_model <- read_rds(file = 'meyers_model.rds')
+# updated_model <- read_rds(file = './results/BCL_case_study/updated_model.rds')
+# meyers_model <- read_rds(file = './results/BCL_case_study/meyers_model.rds')
 # calculate the age of the Cenomanian-Turonian boundary -----------------------
 meyers_predictions <- predict(age_model = meyers_model, 
                               new_positions = new_positions)
 
 updated_predictions <- predict(age_model = updated_model, 
-                             new_positions = new_positions)
+                               new_positions = new_positions)
 # plot the results ------------------------------------------------------------
 # swap the stratigraphic positions around for plotting
 # age model CI
@@ -180,7 +180,7 @@ meyers_eha <- data.frame(age = meyers_model$cyclostrat_CI[[1]]$median,
   scale_y_reverse()
 
 updated_eha <- data.frame(age = updated_model$cyclostrat_CI[[1]]$median, 
-                         value = updated_model$cyclostrat_CI[[1]]$value) |> 
+                          value = updated_model$cyclostrat_CI[[1]]$value) |> 
   linterp(genplot = FALSE,
           verbose = FALSE) |> 
   tidy_eha(win = 0.75,
@@ -306,4 +306,3 @@ ggplot() +
 
 updated_dens$x[which.max(updated_dens$y)]
 meyers_dens$x[which.max(meyers_dens$y)]
-         
