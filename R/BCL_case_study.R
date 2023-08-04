@@ -74,12 +74,12 @@ meyers_model <- astro_bayes_model(geochron_data = geochron_meyers,
 write_rds(meyers_model,
           file = './results/BCL_case_study/meyers_model.rds')
 updated_model <- astro_bayes_model(geochron_data = geochron_updated,
-                                 tuning_frequency = tuning,
-                                 segment_edges = segment_edges,
-                                 cyclostrat_data = cyclostrat_2.5,
-                                 method = 'malinverno',
-                                 iterations = 500000,
-                                 burn = 50000)
+                                   tuning_frequency = tuning,
+                                   segment_edges = segment_edges,
+                                   cyclostrat_data = cyclostrat_2.5,
+                                   method = 'malinverno',
+                                   iterations = 500000,
+                                   burn = 50000)
 write_rds(updated_model,
           file = './results/BCL_case_study/updated_model.rds')
 
