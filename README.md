@@ -2,7 +2,9 @@
 
 [![DOI](https://zenodo.org/badge/411031242.svg)](https://zenodo.org/badge/latestdoi/411031242)
 
-This repository contains the data, code, and manuscript editing history for **Trayler, R. B., Meyers, S. R., Sageman, B. B., Schmitz, M. D., (in prep) *Bayesian Integration of Astrochronology and Radioisotope Geochronology*
+This repository contains the data, code, and manuscript editing history for **Trayler, R. B., Meyers, S. R., Sageman, B. B., Schmitz, M. D., (in prep) *Bayesian Integration of Astrochronology and Radioisotope Geochronology***. 
+
+The code an installation instructions for the `{astroBayes}` `R` package can be found at [github.com/robintrayler/astroBayes](https://github.com/robintrayler/astroBayes). 
 
 ## File Structure 
 
