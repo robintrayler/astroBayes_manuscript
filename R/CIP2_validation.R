@@ -20,7 +20,7 @@ tests    <- data.frame(size = size,
 
 # set up for parallel processing ----------------------------------------------
 numCores <- detectCores() - 2 # leave one core to run the computer
-cl <- makeCluster(numCores) # make a cluster running R in parallel
+cl <- makeCluster(numCores)   # make a cluster running R in parallel
 
 # load the testing data on each cluster ---------------------------------------
 clusterEvalQ(cl = cl, {
@@ -48,7 +48,7 @@ age_model <- function(i,
                       size) {
   # make sure the hiatus is bracketed
   good <- FALSE
-  bad = TRUE
+  bad  <- TRUE
   repeat{
     # generate some random geochronology --------------------
     index <- sample(seq_along(true_data$position), size = size)
@@ -66,9 +66,9 @@ age_model <- function(i,
       if(bad == FALSE) {
         break()  
       }
-      
     }
   }
+  
   # make some random dates --------------------------------
   geochron_data <- data.frame(
     id = id,
