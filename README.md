@@ -7,7 +7,7 @@ This repository contains the data, code, and manuscript editing history for
 The code, installation instructions, and user guide for the `{astroBayes}` `R` package can be found at [github.com/robintrayler/astroBayes](https://github.com/robintrayler/astroBayes). 
 
 ## File Structure 
-Below is a breakdown of the files and R scripts in this repository. If you would like to reproduce the tests in the manuscript run the scripts in the `./R/` directory *in the order listed* below. 
+The breakdown of the files and R scripts in this repository is below. If you would like to reproduce the tests in the manuscript run the scripts in the `./R/` directory *in the order listed* below. 
 
 ## **🚨WARNING🚨** 
 These scripts are designed to be run in parallel on a fairly powerful desktop computer or cluster. **Otherwise, they will take several days or weeks to complete and will generate approximately 1 terabyte of results files**. It is not recommended to run them on a personal laptop. 
@@ -55,7 +55,7 @@ These scripts are designed to be run in parallel on a fairly powerful desktop co
 
 This manuscript is written in [`Pandoc`](https://pandoc.org) flavored markdown. Follow the instructions [here](https://pandoc.org/installing.html) to install `pandoc`. The manuscript also relies on the [`pandoc-crossref`](https://github.com/lierdakil/pandoc-crossref) filter to handle figure, table, and section numbering. 
 
-The manuscript file, `manuscript.md` can be compiled into a nicely formatted pdf but running the following pandoc command.
+The manuscript file, `manuscript.md` can be compiled into a nicely formatted PDF by running the following pandoc command.
 
 ```bash
 pandoc -s manuscript.md -o manuscript.pdf --pdf-engine=xelatex --filter pandoc-crossref --citeproc --number-sections
