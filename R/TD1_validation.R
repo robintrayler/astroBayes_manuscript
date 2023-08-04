@@ -1,3 +1,11 @@
+# This script will generate 4000 validation models for the TD1 data set using
+# different numbers of randomly generated "dates" varying between 2 and 8 dates
+# per model. 
+
+# WARNING: This script is designed to run in parallel. It takes several days to 
+# complete and will generate about 620 Gb of results files. I don't recommend
+# running this on a personal laptop.
+
 # load required libraries -----------------------------------------------------
 library(parallel)
 library(tidyverse)

@@ -1,3 +1,10 @@
+# This script will generate 1000 validation models for the CIP2 data set using
+# the exact same data as inputs
+
+# WARNING: This script is designed to run in parallel. It takes several days to 
+# complete and will generate about 240 Gb of results files. I don't recommend
+# running this on a personal laptop.
+
 # load required libraries -----------------------------------------------------
 library(parallel)
 library(tidyverse)

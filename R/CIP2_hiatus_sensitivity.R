@@ -17,31 +17,37 @@ eight_ages <- list.files('./results/random_age_validation/CIP2_8_ages',
                          full.names = TRUE, 
                          pattern = '*.rds')
 
+# list of file names
 file_list <- c(two_ages, four_ages, six_ages, eight_ages)
 
-
+# allocate some storage
 storage <- data.frame(median  = vector(length = length(file_list)),
                       CI_2.5  = vector(length = length(file_list)),
                       CI_97.5 = vector(length = length(file_list)),
                       delta   = vector(length = length(file_list)),
-                      n_ages  = rep(c('2 ages','4 ages','6 ages','8 ages'), each = length(file_list)/4))
+                      n_ages  = rep(c('2 ages','4 ages','6 ages','8 ages'), 
+                                    each = length(file_list)/4))
 
-
+# loop through all the models -------------------------------------------------
 for(i in seq_along(file_list)) {
+  # load a model
   model <- read_rds(file_list[i])
   
+  # get the position of the hiatus
   hiatus_position <- model$segment_edges$position[model$segment_edges$hiatus]
   
-  storage$median[i] <- model$hiatus_durations |> median()
-  storage$CI_2.5[i] <- model$hiatus_durations |> quantile(prob = 0.025)
+  # calculate the hiatus duration and CI
+  storage$median[i]  <- model$hiatus_durations |> median()
+  storage$CI_2.5[i]  <- model$hiatus_durations |> quantile(prob = 0.025)
   storage$CI_97.5[i] <- model$hiatus_durations |> quantile(prob = 0.975)
-  storage$delta[i] <- (model$geochron_data$position - hiatus_position) |> 
+  storage$delta[i]   <- (model$geochron_data$position - hiatus_position) |> 
     abs() |> 
     min()
   
   rm(model)
 }
-
+# plot the results ------------------------------------------------------------
+# two dates -------------------------------------------------
 hiatus_2 <-  storage |> 
   filter(n_ages == '2 ages') |> 
   filter(median !=0) |> 
@@ -63,6 +69,7 @@ hiatus_2 <-  storage |>
   theme(axis.title.x = element_blank(),
         axis.text.x = element_blank())
 
+# 4 dates -------------------------------------------------
 hiatus_4 <-  storage |> 
   filter(n_ages == '4 ages') |> 
   filter(median !=0) |> 
@@ -85,6 +92,7 @@ hiatus_4 <-  storage |>
         axis.title.y = element_blank(),
         axis.text = element_blank())
 
+# 6 dates -------------------------------------------------
 hiatus_6 <-  storage |> 
   filter(n_ages == '6 ages') |> 
   filter(median !=0) |> 
@@ -104,6 +112,7 @@ hiatus_6 <-  storage |>
   xlab(expression(Delta*'hiatus-date (m)')) + 
   ylab('hiatus duration (Ma)')
 
+# 8 dates -------------------------------------------------
 hiatus_8 <-  storage |> 
   filter(n_ages == '8 ages') |> 
   filter(median !=0) |> 
@@ -125,10 +134,7 @@ hiatus_8 <-  storage |>
   theme(axis.text.y = element_blank(),
         axis.title.y = element_blank())
   
-
-
-
-
+# save a plot ---------------------------------------------
 pdf(file = './figures/hiatus_duration.pdf',
     width = 4,
     height = 4)
