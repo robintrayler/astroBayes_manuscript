@@ -58,7 +58,7 @@ This manuscript is written in [`Pandoc`](https://pandoc.org) flavored markdown. 
 The manuscript file, `manuscript.md` can be compiled into a nicely formatted PDF by running the following pandoc command.
 
 ```bash
-pandoc -s manuscript.md -o manuscript.pdf --pdf-engine=xelatex --filter pandoc-crossref --citeproc --number-sections
+pandoc -s -f markdown+mark -o manuscript.pdf --pdf-engine=xelatex --filter pandoc-crossref --citeproc --number-sections manuscript.md
 ```
 
 
