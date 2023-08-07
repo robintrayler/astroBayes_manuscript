@@ -1,0 +1,5 @@
+position,thickness,hiatus_boundary,sed_min,sed_max
+0,0,FALSE,5,20
+3,0.5,FALSE,5,20
+5.75,0.5,TRUE,5,20
+10,0,FALSE,5,20

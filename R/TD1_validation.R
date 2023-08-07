@@ -27,10 +27,10 @@ clusterEvalQ(cl = cl, {
   library(astroBayes)
   library(tidyverse)
   # load required data
-  cyclostrat        <- read.csv(file = './data/data_A/cyclostratigraphic_record.csv')
-  tuning_frequency  <- read.csv(file = './data/data_A/tuning_frequency.csv')
-  true_data         <- read.csv(file = './data/data_A/true_age.csv')
-  segment_edges     <- read.csv(file = './data/data_A/segment_edges.csv')
+  cyclostrat           <- read.csv(file = './data/data_A/cyclostratigraphic_record.csv')
+  target_frequency     <- read.csv(file = './data/data_A/target_frequency.csv')
+  true_data            <- read.csv(file = './data/data_A/true_age.csv')
+  layer_boundaries     <- read.csv(file = './data/data_A/layer_boundaries.csv')
 }
 )
 
@@ -55,14 +55,15 @@ age_model <- function(i,
   model <- astro_bayes_model(
     geochron_data = geochron_data,
     cyclostrat_data = cyclostrat,
-    tuning_frequency = tuning_frequency,
-    segment_edges = segment_edges,
+    target_frequency = target_frequency,
+    layer_boundaries = layer_boundaries,
     iterations = 10000, 
     burn = 1000, 
     method = 'malinverno')
   
   # prep the model outputs --------------------------------
-  f <- approxfun(x = true_data$position, y = true_data$age)
+  f <- approxfun(x = true_data$position, 
+                 y = true_data$age)
   true_age <- f(model$CI$position)
   
   # write the model CI to a csv --------------------------

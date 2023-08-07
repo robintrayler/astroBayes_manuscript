@@ -34,7 +34,7 @@ for(i in seq_along(file_list)) {
   model <- read_rds(file_list[i])
   
   # get the position of the hiatus
-  hiatus_position <- model$segment_edges$position[model$segment_edges$hiatus]
+  hiatus_position <- model$layer_boundaries$position[model$layer_boundaries$hiatus]
   
   # calculate the hiatus duration and CI
   storage$median[i]  <- model$hiatus_durations |> median()

@@ -14,10 +14,10 @@ geochron_meyers <- read.csv(file = './data/BCL/meyers_radioisotopic_dates.csv')
 geochron_updated <- read.csv(file = './data/BCL/updated_radioisotopic_dates.csv') 
 
 # layer boundary positions
-segment_edges <- read.csv(file = './data/BCL/segment_edges.csv')
+layer_boundaries <- read.csv(file = './data/BCL/layer_boundaries.csv')
 
 # target frequencies
-tuning <- read.csv(file = './data/BCL/tuning_frequency.csv')
+target_frequency <- read.csv(file = './data/BCL/target_frequency.csv')
 
 # C/T boundary position
 new_positions = data.frame(id = 'CTB',
@@ -65,8 +65,8 @@ eha_results %>%
 
 # run astro bayes -------------------------------------------------------------
 meyers_model <- astro_bayes_model(geochron_data = geochron_meyers,
-                                  tuning_frequency = tuning,
-                                  segment_edges = segment_edges,
+                                  target_frequency = target_frequency,
+                                  layer_boundaries = layer_boundaries,
                                   cyclostrat_data = cyclostrat_2.5,
                                   method = 'malinverno',
                                   iterations = 500000,
@@ -74,8 +74,8 @@ meyers_model <- astro_bayes_model(geochron_data = geochron_meyers,
 write_rds(meyers_model,
           file = './results/BCL_case_study/meyers_model.rds')
 updated_model <- astro_bayes_model(geochron_data = geochron_updated,
-                                   tuning_frequency = tuning,
-                                   segment_edges = segment_edges,
+                                   target_frequency = target_frequency,
+                                   layer_boundaries = layer_boundaries,
                                    cyclostrat_data = cyclostrat_2.5,
                                    method = 'malinverno',
                                    iterations = 500000,
@@ -168,7 +168,7 @@ meyers_eha <- data.frame(age = meyers_model$cyclostrat_CI[[1]]$median,
   xlab('Frequency (cycles/m)') +
   ylab('Age (Ma)') +
   theme(legend.position = 'none') +
-  geom_vline(data = tuning, 
+  geom_vline(data = target_frequency, 
              mapping = aes(xintercept = frequency,
                            color = orbital_cycle),
              size = 1,
@@ -196,7 +196,7 @@ updated_eha <- data.frame(age = updated_model$cyclostrat_CI[[1]]$median,
   theme(legend.position = 'none',
         axis.title.y = element_blank(),
         axis.text.y = element_blank()) +
-  geom_vline(data = tuning, 
+  geom_vline(data = target_frequency, 
              mapping = aes(xintercept = frequency,
                            color = orbital_cycle),
              size = 1,
@@ -227,7 +227,7 @@ meyers_pgram <- meyers_model$cyclostrat_CI[[1]] |>
             color = 2,
             linetype = 'dashed') +
   theme_bw() +
-  geom_vline(data = meyers_model$tuning_frequency,
+  geom_vline(data = meyers_model$target_frequency,
              mapping = aes(xintercept = frequency),
              color = 'grey',
              linetype = 'dashed',
@@ -260,7 +260,7 @@ updated_pgram <- updated_model$cyclostrat_CI[[1]] |>
             color = 2,
             linetype = 'dashed') +
   theme_bw() +
-  geom_vline(data = meyers_model$tuning_frequency,
+  geom_vline(data = meyers_model$target_frequency,
              mapping = aes(xintercept = frequency),
              color = 'grey',
              linetype = 'dashed',

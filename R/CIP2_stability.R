@@ -25,15 +25,10 @@ clusterEvalQ(cl = cl, {
   library(tidyverse)
   # load required data
   cyclostrat        <- read.csv(file = './data/CIP2/cyclostrat_data.csv')
-  tuning_frequency  <- read.csv(file = './data/CIP2/tuning_frequency.csv')
+  target_frequency  <- read.csv(file = './data/CIP2/target_frequency.csv')
   true_data         <- read.csv(file = './data/CIP2/true_age.csv')
-  
-  segment_edges     <-data.frame(position = c(0, 3, 5.75, 10),
-                                 thickness = c(0, 0.5, 0.5, 0),
-                                 hiatus_boundary = c(FALSE, FALSE, TRUE, FALSE),
-                                 sed_min = c(7.5, 7.5, 10, 5),
-                                 sed_max = c(15, 17.5, 20, 20))
-  
+  layer_boundaries  <- read.csv(file = './data/CIP2/layer_boundaries.csv') 
+
   date_positions <- true_data[c(125, 350, 700, 950), ]
   
   geochron_data  <- # assemble into synthetic geochronology
@@ -54,14 +49,15 @@ age_model <- function(i) {
   model <- astro_bayes_model(
     geochron_data = geochron_data,
     cyclostrat_data = cyclostrat,
-    tuning_frequency = tuning_frequency,
-    segment_edges = segment_edges,
+    target_frequency = target_frequency,
+    layer_boundaries = layer_boundaries,
     iterations = 10000, 
     burn = 1000, 
     method = 'malinverno')
   
   # prep the model outputs --------------------------------
-  f <- approxfun(x = true_data$position, y = true_data$age)
+  f <- approxfun(x = true_data$position, 
+                 y = true_data$age)
   true_age <- f(model$CI$position)
   
   # write the model CI to a csv --------------------------

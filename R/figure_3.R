@@ -14,8 +14,8 @@ make_plot <- function(rds,
                       true_data = NA) {
   
   dates <- rds$geochron_data
-  range <- -seq(min(rds$segment_edges$position), 
-                max(rds$segment_edges$position), 
+  range <- -seq(min(rds$layer_boundaries$position), 
+                max(rds$layer_boundaries$position), 
                 length = 500)
   
   # generate a bchron model
