@@ -18,20 +18,20 @@ These scripts are designed to be run in parallel on a fairly powerful desktop co
         └── cyclostratigraphic_record.csv   # greyscale data
         └── meyers_radioisotopic_dates.csv  # dates from Meyers et al. (2012)
         └── updated_radioisotopic_dates.csv # updated dates for BCL 
-        └── segment_edges.csv               # layer boundary positions for modeling
-        └── tuning_frequency.csv            # target frequencies for modeling
+        └── layer_boundaries.csv            # layer boundary positions for modeling
+        └── target_frequency.csv            # target frequencies for modeling
     └── CIP2 # CIP2 testing data
         └── cyclostrat_data.csv             # synthetic cyclostratigraphic data 
-        └── segment_edges.csv               # layer boundary positions for modeling
+        └── layer_boundaries.csv            # layer boundary positions for modeling
         └── radioisotopic_dates.csv         # dates used for stability modeling
         └── true_age.csv                    # true age model 
-        └── tuning_frequency.csv            # target frequencies for modeling
+        └── target_frequency.csv            # target frequencies for modeling
     └── TD1 # TD1 testing data
         └── cyclostrat_data.csv             # synthetic cyclostratigraphic data 
-        └── segment_edges.csv               # layer boundary positions for modeling
+        └── layer_boundaries.csv            # layer boundary positions for modeling
         └── radioisotopic_dates.csv         # dates used for stability modeling
         └── true_age.csv                    # true age model 
-        └── tuning_frequency.csv            # target frequencies for modeling
+        └── target_frequency.csv            # target frequencies for modeling
 ├── R # R scripts to to reproduce figures and calculations
     └── CIP2_stability.R                    # runs 1,000 CIP2 models with the same inputs
     └── CIP2_validation.R                   # runs 4,000 CIP2 models with randomly placed dates
@@ -43,6 +43,7 @@ These scripts are designed to be run in parallel on a fairly powerful desktop co
     └── proportion_constrained.R            # calculates proportion of true age model within 95% CI
     └── figure_2.R                          # generates figure 2
     └── figure_3.R                          # generates figure 3
+    └── figure_8.R                          # generates figure 8
 ├── figures                                 # output directory for pdf figures
     └── final figures                       # cleaned up figures for publication 
 ├── results # contains the model results for stability and validation models
