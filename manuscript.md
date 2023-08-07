@@ -10,11 +10,12 @@ csl: /Users/robintrayler/Zotero/styles/copernicus-publications.csl
 mainfont: "Helvetica"
 fontsize: 11pt
 geometry: margin=1.0in
-chapters: True
-chaptersDepth: 1
-chapDelim: ""
+#chapters: True
+#chaptersDepth: 1
+#chapDelim: ""
 tblPrefix: Table
-figPrefix: Figure
+figPrefix: Fig.
+eqPrefix: Eq.
 secPrefix: Section
 autoEqnLabels: true
 link-citations: false
@@ -27,9 +28,13 @@ header-includes:
     - \doublespacing
 ---
 
+
+
 <!-- pandoc -s -f markdown+mark -o manuscript.pdf --pdf-engine=xelatex --filter pandoc-crossref --citeproc --number-sections manuscript.md --> 
 
 <!-- pandoc -s -f markdown+mark -o manuscript.docx --pdf-engine=xelatex --filter pandoc-crossref --citeproc --reference-doc=reference.docx manuscript.md --> 
+
+<!-- pandoc -s -f markdown+mark -o astrobayes_manuscript.docx --pdf-engine=xelatex --filter pandoc-crossref --citeproc --reference-doc=Copernicus_Word_template.docx manuscript.md --> 
 
 > ^1^Department of Life and Environmental Sciences, University of California, Merced, CA
 > 
@@ -90,7 +95,7 @@ Previous Bayesian approaches for  linking astrochronology and radioisotopic date
 
 ## Model Construction
 
-![Schematic of model parameters. A) A simple five layer sedimentation model. B) The sedimentation model from panel A) transformed and anchored as an age-depth model. See @tbl:parameters for an explanation of each parameter.](./figures/final figures/workflow.pdf){#fig:workflow width=75%}
+![Schematic of model parameters. A) A simple five layer sedimentation model. B) The sedimentation model from panel A) transformed and anchored as an age-depth model. See @tbl:parameters for an explanation of each parameter.](./figures/final figures/figure_1.pdf){#fig:workflow width=75%}
 
 | Parameter |                       Explanation                        |
 |:---------:|:---------------------------------------------------------|
@@ -157,7 +162,7 @@ The overall likelihood function of an anchored age-depth model is now the joint 
 
 ## Testing and Validation
 
-![Testing data sets used for model validation. A, D) The synthetic cyclostratigraphic records for TD1 and CIP2. B, E) True age-depth models for both data sets. C, F) Evolutive harmonic analysis of panels A and D. Lighter colors indicate higher spectral amplitude. The dashed lines are layer boundary positions (*z*) chosen by visual inspection of the evolutive harmonic analysis results.](./figures/final figures/testing_data.pdf){#fig:testing_data width=100%}
+![Testing data sets used for model validation. A, D) The synthetic cyclostratigraphic records for TD1 and CIP2. B, E) True age-depth models for both data sets. C, F) Evolutive harmonic analysis of panels A and D. Lighter colors indicate higher spectral amplitude. The dashed lines are layer boundary positions (*z*) chosen by visual inspection of the evolutive harmonic analysis results.](./figures/final figures/figure_2.pdf){#fig:testing_data width=100%}
 
 We tested `astroBayes` using two synthetic data sets that consist of a known age-depth model and a paired cyclostratigraphic record. The first dataset (TD1) consists of a simple sedimentation model that was used as an earth system transfer function to  distort a normalized eccentricity-tilt-precession (ETP; @laskar2004) time series (with equal contribution of each astronomical parameter) to generate a synthetic cyclostratigraphic record (@fig:testing_data). This 2 million year ETP signal was translated into a stratigraphic signal using a stable sedimentation rate of 7.5 m/Ma for the first 0.500 Ma (the oldest portion of the record), followed by a linear sedimentation rate increase to 12.5 m/Ma until 1.0 Ma, then a linear sedimentation rate decrease to 10 m/Ma until 1.5 Ma, and finally a stable sedimentation rate of 10. m/Ma for the youngest stratigraphic interval. 
 
@@ -191,11 +196,9 @@ Since the CIP2 data set includes a significant hiatus [@sinnesael2019] we also i
 
 ## Model Validation
 
-![Example age-depth models of the TD1 and CIP2 data sets with randomly placed dates shown as colored Gaussian distributions. The dates were randomly generated from the true age-depth model (dashed red line). The black line and shaded grey region are the `astroBayes` model median and 95% credible interval. The dark grey solid and dashed lines are `Bchron` models generated using only the dates as model inputs. Panels A - D) 2, 4, 6, and 8 date models for the TD1 data. Panels E - H) 2, 4, 6, and 8 date models for the CIP2 data. Note that the left and right columns have different vertical and horizontal scales.](./figures/final figures/random_models.pdf){#fig:random_models height=75%}
+![Example age-depth models of the TD1 and CIP2 data sets with randomly placed dates shown as colored Gaussian distributions. The dates were randomly generated from the true age-depth model (dashed red line). The black line and shaded grey region are the `astroBayes` model median and 95% credible interval. The dark grey solid and dashed lines are `Bchron` models generated using only the dates as model inputs. Panels A - D) 2, 4, 6, and 8 date models for the TD1 data. Panels E - H) 2, 4, 6, and 8 date models for the CIP2 data. Note that the left and right columns have different vertical and horizontal scales.](./figures/final figures/figure_3.pdf){#fig:random_models height=75%}
 
 Reproducibility tests indicate that the `astroBayes` model converges quickly and its parameter estimates remain stable across model runs. Individual trace plots for each parameter (sedimentation rates, anchor age, hiatus duration [CIP2 only]) for the TD1 and CIP2 data sets stabilized quickly and appeared visually well-mixed indicating adequate exploration of parameter space (see supplemental figures @fig:TD1_trace, @fig:TD1_density, @fig:CIP2_trace, @fig:CIP2_density). Similarly, kernel density estimates of each parameter were indistinguishable among the 1,000 simulations. The model median and 95% credible interval were likewise stable, and varied by no more than ±0.005 Ma (2σ) for both testing data sets. 
-
-<!-- run `model_reproducability.R` to replicate this number. --> 
 
 Model accuracy does not appear to be particularly sensitive to the number or stratigraphic position of dates as the true age-depth model fell within the 95% credible interval of the `astroBayes` posterior 99% of the time with no clear bias towards greater or fewer dates (@fig:random_models). Similarly, for the CIP2 data set, other than the requirement that there is at least one date above and below the hiatus, the stratigraphic position of the dates does not appear to have a strong influence on hiatus quantification and in all cases the true hiatus duration (0.203 Ma) was contained within the 95% CI of the hiatus duration parameter (*h*; @fig:hiatus_duration). Conversely, the number of radioisotopic dates appears to have the largest effect on overall model uncertainty  (see also: @blaauw2018). As the number of dates increase the width of the 95% credible interval shrinks and approaches the input uncertainty of the radioisotopic dates (@fig:random_models). Crucially however, the uncertainties never "balloon" and  are usually close to the uncertainty of the dates, unlike "dates-only" age-depth models [@devleeschouwer2014].
 
@@ -209,7 +212,7 @@ A potential criticism of our approach may be that our choice of a simple Bayesia
 
 ## Hiatus Duration Estimation
 
-![Hiatus duration versus the stratigraphic distance between the hiatus and the nearest radioisotope date for the CIP2 data set. The points are the model median, and the error bars are the 95% credible interval. The red line is the true hiatus duration of 0.203 Ma. A-D) Models with 2, 4, 6, and 8 ages respectively.](./figures/final figures/hiatus_duration.pdf){#fig:hiatus_duration}
+![Hiatus duration versus the stratigraphic distance between the hiatus and the nearest radioisotope date for the CIP2 data set. The points are the model median, and the error bars are the 95% credible interval. The red line is the true hiatus duration of 0.203 Ma. A-D) Models with 2, 4, 6, and 8 ages respectively.](./figures/final figures/figure_4.pdf){#fig:hiatus_duration}
 
 The ability to estimate hiatus durations is a significant strength of our Bayesian modeling framework. Hiatuses in stratigraphic records significantly complicate the interpretation of biologic and geochemical proxy records. Detecting and resolving the duration of hiatuses is therefore important to ensuring the accuracy of age-depth models. In principle, hiatuses can be detected and quantified from cyclostratigraphic records alone [@meyers2004; @meyers2019]. However, these approaches can be skewed towards minimum hiatus duration and are sensitive to distortions of the astronomical signal from other non-hiatus sources [@meyers2004]. `astroBayes` relies on both astrochronology and radioisotopic geochronology to estimate the duration of one or more hiatuses with the joint inversion of  astrochronology and radioisotopic ages controlling the sedimentation rates (slopes) above and below as well as the absolute durations of layer-bounding hiatuses.
 
@@ -246,21 +249,26 @@ We used `astroBayes` to develop two new age-depth models for the Bridge Creek Li
 
 Table: Radioisotopic dates used used as model inputs for the two Bridge Creek Limestone Member age-depth models shown in @fig:ct_boundary. {#tbl:BCL_dates}
 
-![Results of `astroBayes` modeling of the Bridge Creek Limestone Member greyscale record showing the modeled age of the Cenomanian Turonian Boundary. A) Bridge Creek Limestone Member grayscale record. B) Evolutive harmonic analysis of panel A) with superimposed layer boundary positions (dashed white lines). C) Two age-depth model for the Bridge Creek Limestone member. The colored probability distributions are the dates used for *Meyers model* and the grey probability distributions are the dates used for the *Updated model*. The blue points and error bars are the modeled age for the Cenomanian Turonian boundary. Note that these points have been slightly offset vertically for visual clarity.](./figures/final figures/ct_boundary.pdf){#fig:ct_boundary}
+![Results of `astroBayes` modeling of the Bridge Creek Limestone Member greyscale record showing the modeled age of the Cenomanian Turonian Boundary. A) Bridge Creek Limestone Member grayscale record. B) Evolutive harmonic analysis of panel A) with superimposed layer boundary positions (dashed white lines). C) Two age-depth model for the Bridge Creek Limestone member. The colored probability distributions are the dates used for *Meyers model* and the grey probability distributions are the dates used for the *Updated model*. The blue points and error bars are the modeled age for the Cenomanian Turonian boundary. Note that these points have been slightly offset vertically for visual clarity.](./figures/final figures/figure_5.pdf){#fig:ct_boundary}
 
 Results for both the *Meyers* and *Updated* models are shown in @fig:ct_boundary C. Evolutive harmonic analysis of the grayscale record after applying the median  *Meyers* age-depth model reveal, stable, eccentricity, eccentricity (~10 cycles/Ma) and obliquity (~20 cycles/Ma) scale frequencies, suggesting that age-depth modeling has successfully removed distortion of these astronomical frequencies as a result of varying sedimentation rates (@fig:ct_modeled). The *Meyers* and *Updated* are broadly similar, and have nearly identical posterior distributions of sedimentation rate (note the parallel model medians in @fig:ct_boundary). The *Meyers* model has a wider credible interval compared to the *Updated* model, likely a result of the somewhat more precise ages use (@tbl:BCL_dates). The *Updated* model is also systematically older than the *Meyers* model, showing the influence the revised bentonite ages have on age-depth model construction. The estimated hiatus durations from both models are similar; the *Meyers* model has a maximum density at 0.021 Ma and the *Updated* model has a maximum density at 0.014 Ma. Both durations are comparable to the duration previously reported in @meyers2004 (0.079 – 0.0254 Ma). Median hiatus durations are somewhat longer (*Meyers*- 0.104 Ma; *Updated*- 0.065 Ma) suggesting an eccentricity or precession scale hiatus (@fig:ct_hiatus). However, the previous estimates of @meyers2004 are explicitly minimum duration estimations and fall within the 95% credible interval of the `astroBayes` modeled duration.
 
-![A) Periodogram of the Bridge Creek Limestone Member greyscale data after applying the median `astroBayes` age-depth model. The solid red line is the AR1 red noise background and the dashed red line is the 95% confidence interval. B) Evolutive harmonic analysis of  Astrologic Bridge Creek Limestone Member greyscale data after applying the median `astroBayes` age-depth model. In both panels astronomical frequencies (@tbl:ct_frequencies) used in model construction are shown as vertical dashed lines. Note that in panel B the distortion from variations in sedimentation rate (compared with @fig:ct_boundary B) has been removed.](./figures/final figures/ct_modeled.pdf){#fig:ct_modeled}
+![A) Periodogram of the Bridge Creek Limestone Member greyscale data after applying the median `astroBayes` age-depth model. The solid red line is the AR1 red noise background and the dashed red line is the 95% confidence interval. B) Evolutive harmonic analysis of  Astrologic Bridge Creek Limestone Member greyscale data after applying the median `astroBayes` age-depth model. In both panels astronomical frequencies (@tbl:ct_frequencies) used in model construction are shown as vertical dashed lines. Note that in panel B the distortion from variations in sedimentation rate (compared with @fig:ct_boundary B) has been removed.](./figures/final figures/figure_6.pdf){#fig:ct_modeled}
 
-![Modeled hiatus duration for the Bridge Creek Limestone Member.](./figures/final figures/ct_hiatus.pdf){#fig:ct_hiatus}
+![Modeled hiatus duration for the Bridge Creek Limestone Member.](./figures/final figures/figure_7.pdf){#fig:ct_hiatus}
 
 Finally, we calculated the age of the Cenomanian-Turonian boundary using both age depth models. The *Meyers* model age for the boundary is 93.87±0.15 Ma (median±95%CI), essentially indistinguishable from the the age of 93.90±0.15 Ma reported by @meyers2012, suggesting that `astroBayes` produces comparable results when using identical data. The *Updated* model boundary-age is slightly older (93.98±0.10 Ma; median±95%CI). The age of the Cenomanian-Turonian boundary has been revised multiple times over the past few years and has variously been reported as 93.95±0.05 Ma [@jones2021], 93.9±0.2 Ma [@gale2020], or as between 94.007 and 94.616 Ma [@renaut2023], with most revisions shifting the boundary age older towards about ~94 Ma, a trend that our *Updated* model continues. Both the *Meyers* and *Updated* model-ages are broadly comparable with these previous estimates, although they only slightly overlap with the range of @renaut2023 (@fig:ct_age). Crucially however, both age-depth models provide a continuous record of age for the Bridge Creek Limestone Member which can be used to interpret the boundary ages and durations of several ammonite biozones present in the section [@meyers2012; @meyers2001] and foster correlations to other calibrated sections. Accurate determination of the Cenomanian-Turonian boundary age is important as boundary serves as an important geochronological marker against which other boundary-ages are determined.
 
-![Modeled and previously reported ages for the Cenomanian-Turonian boundary.](./figures/final figures/ct_boundary_ages.pdf){#fig:ct_age}
+![Modeled and previously reported ages for the Cenomanian-Turonian boundary.](./figures/final figures/figure_8.pdf){#fig:ct_age}
 
 # Conclusions
 
 Radioisotopic geochronology and astrochronology underly the development of age-depth models that translate stratigraphic position to numerical time. In turn, these models are crucial to the evaluation of climate proxy records and the development of the geologic time scale. Existing Bayesian methods for age-depth modeling rely only on radioisotopic dates and as a consequence, cannot natively incorporate astronomical constraints on the passage of time. However astrochronology is a rich source of chronologic information and its explicit inclusion in the calculation of age-depth models can substantially improve model accuracy and precision. Here we have presented a new joint Bayesian inversion of radioisotopic and astronomical data, `astroBayes`. The method is freely available as an `R` package and contains a variety of functions for the creation and use of age-depth models including modeling, prediction, and plotting. Our testing shows that `astroBayes` outperforms dates-only age-depth models and produces chronologies that are simultaneously consistent with astrochronology and radioisotopic dates with substantially smaller model uncertainties. Reducing the uncertainty associated with geochronological data, either as discrete dates or age-depth models, allows the testing of cause-and-effect relationships of interrelated climatological and biological events over the course of earth's history [@burgess2015; @schmitz2013] and has the potential to improve the correlation of geologic events among and between basins worldwide. 
+
+# Code and Data Availability
+
+The `astroBayes` R package and installation instructions are available at [github.com/robintrayler/astroBayes](https://github.com/robintrayler/astroBayes). All code and data necessary to reproduce the results of this manuscript (model testing, validation, and case study) are available at [github.com/robintrayler/astroBayes_manuscript](https://github.com/robintrayler/astroBayes_manuscript).
+
 
 # Acknowledgements {.unnumbered}
 
@@ -268,7 +276,7 @@ We thank Dr. Matthias Sinnesael for providing the Cyclostratigraphy Inter-compar
 
 # Author contribution {.unnumbered}
 
-RBT, and MDS conceived the project and developed the modeling framework with input from SRM. RBT wrote the code for the `astroBayes` `R` package and performed testing and validation with input from SRM and MDS. BBS contributed the Bridge Creek grayscale data. RBT, MDS, BBS, and SRM wrote and edited the manuscript. 
+RBT, and MDS conceived the project and developed the modeling framework with input from SRM. RBT wrote the code for the `astroBayes` `R` package and performed testing and validation with input from SRM and MDS. BBS contributed the Bridge Creek Limestone grayscale data. RBT, MDS, BBS, and SRM wrote and edited the manuscript. 
 
 \newpage
 
@@ -280,10 +288,10 @@ RBT, and MDS conceived the project and developed the modeling framework with inp
 
 # Supplemental Figures {label="S"}
 
-![Superimposed trace plots of sedimentation rate for 50 randomly chosen models for the TD1 dataset. Different colors indicate different model runs. the vertical dashed line indicates the burn-in period.](./figures/final figures/supplemental_figures/TD1_trace.jpg){#fig:TD1_trace height=100%}
+![Superimposed trace plots of sedimentation rate for 50 randomly chosen models for the TD1 dataset. Different colors indicate different model runs. the vertical dashed line indicates the burn-in period.](./figures/final figures/supplemental_figures/figure_S1.jpg){#fig:TD1_trace height=100%}
 
-![Superimposed kernel density estimates of the posterior distribution for each model parameter from 50 randomly chosen TD1 validation models. Different colors indicate different model runs.](./figures/final figures/supplemental_figures/TD1_density.jpg){#fig:TD1_density height=100%}
+![Superimposed kernel density estimates of the posterior distribution for each model parameter from 50 randomly chosen TD1 validation models. Different colors indicate different model runs.](./figures/final figures/supplemental_figures/figure_S2.jpg){#fig:TD1_density height=100%}
 
-![Superimposed trace plots of sedimentation rate for 50 randomly chosen models for the CIP2 dataset. Different colors indicate different model runs. the vertical dashed line indicates the burn-in period.](./figures/final figures/supplemental_figures/CIP2_trace.jpg){#fig:CIP2_trace height=100%}
+![Superimposed trace plots of sedimentation rate for 50 randomly chosen models for the CIP2 dataset. Different colors indicate different model runs. the vertical dashed line indicates the burn-in period.](./figures/final figures/supplemental_figures/figure_S3.jpg){#fig:CIP2_trace height=100%}
 
-![Superimposed kernel density estimates of the posterior distribution for each model parameter from 50 randomly chosen CIP2 validation models. Different colors indicate different model runs.](./figures/final figures/supplemental_figures/CIP2_density.jpg){#fig:CIP2_density height=100%}
+![Superimposed kernel density estimates of the posterior distribution for each model parameter from 50 randomly chosen CIP2 validation models. Different colors indicate different model runs.](./figures/final figures/supplemental_figures/figure_S4.jpg){#fig:CIP2_density height=100%}
