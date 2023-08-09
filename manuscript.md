@@ -5,8 +5,8 @@ author:
   - ^3^Stephen R. Meyers
   - ^4^Bradley B. Sageman
   - ^2^Mark D. Schmitz
-bibliography: /Users/robintrayler/Zotero/ref_library.bib
-csl: /Users/robintrayler/Zotero/styles/copernicus-publications.csl
+bibliography: ./bibtex.bib
+csl: ./copernicus-publications.csl
 mainfont: "Helvetica"
 fontsize: 11pt
 geometry: margin=1.0in
@@ -28,13 +28,9 @@ header-includes:
     - \doublespacing
 ---
 
-
-
 <!-- pandoc -s -f markdown+mark -o manuscript.pdf --pdf-engine=xelatex --filter pandoc-crossref --citeproc --number-sections manuscript.md --> 
 
-<!-- pandoc -s -f markdown+mark -o manuscript.docx --pdf-engine=xelatex --filter pandoc-crossref --citeproc --reference-doc=reference.docx manuscript.md --> 
-
-<!-- pandoc -s -f markdown+mark -o astrobayes_manuscript.docx --pdf-engine=xelatex --filter pandoc-crossref --citeproc --reference-doc=Copernicus_Word_template.docx manuscript.md --> 
+<!-- pandoc -s -f markdown+mark -o astrobayes_manuscript2.docx --pdf-engine=xelatex --filter pandoc-crossref --citeproc --reference-doc=Copernicus_Word_template.docx manuscript.md --> 
 
 > ^1^Department of Life and Environmental Sciences, University of California, Merced, CA
 > 
@@ -220,7 +216,7 @@ The primary weakness of this approach is that `astroBayes` cannot reliably estim
 
 ## Case Study: Bridge Creek Limestone
 
-The Bridge Creek Limestone is the uppermost member of the Greenhorn Formation of central Colorado. It is primarily composed of hemipelagic marlstone and limestone couplets that extend laterally for over 1,000 km in the Western Interior Basin [@elder1994]. These couplets are characterized by alternations from darker organic carbon-rich laminated clay and mudstones to lighter carbonate-rich, organic carbon-poor limestone facies. Previous work has reported Milankovitch scale cyclicity in the Bridge Creek Limestone Member through the application of statistical astrochronologic testing methods [@sageman1997; @sageman1998; @meyers2001; @meyers2012; @meyers2008]. Using U-Pb and ^40^Ar/^39^Ar ages from several bentonites throughout the section to provide temporal anchoring of the astrochronology, @meyers2012 previously calibrated the age of the Cenomanian-Turonian boundary as 93.90±0.15Ma (mean±95%CI) using an adaptation of the Bayesian "stacked bed" algorithm [@buck1991] that respects both stratigraphic superposition and astrochronologic durations between the dates and the boundary position. That work used the floating astrochronology of @meyers2001, based on analysis of a high stratigraphic resolution optical densitometry record (i.e., grayscale) of the Bridge Creek Limestone Member. @meyers2004 later identified a brief hiatus in the Bridge Creek Limestone Member near the base of the *Neocardioceras juddii* ammonite biozone with an estimated minimum duration of 0.079 – 0.0254 Ma. 
+The Bridge Creek Limestone is the uppermost member of the Greenhorn Formation of central Colorado. It is primarily composed of hemipelagic marlstone and limestone couplets that extend laterally for over 1,000 km in the Western Interior Basin [@elder1994]. These couplets are characterized by alternations from darker organic carbon-rich laminated clay and mudstones to lighter carbonate-rich, organic carbon-poor limestone facies. Previous work has reported Milankovitch scale cyclicity in the Bridge Creek Limestone Member through the application of statistical astrochronologic testing methods [@sageman1997; @sageman1998; @meyers2001; @meyers2012; @meyers2008]. Using U-Pb and ^40^Ar/^39^Ar ages from several bentonites throughout the section to provide temporal anchoring of the astrochronology, @meyers2012 previously calibrated the age of the Cenomanian-Turonian boundary as 93.90±0.15Ma (mean±95%CI) using an adaptation of the Bayesian "stacked bed" algorithm [@buck1991] that respects both stratigraphic superposition and astrochronologic durations between the dates and the boundary position. That work used the floating astrochronology of @meyers2001, based on analysis of a high stratigraphic resolution optical densitometry record (i.e., grayscale) of the Bridge Creek Limestone Member. @meyers2004 later identified a brief hiatus in the Bridge Creek Limestone Member near the base of the *Neocardioceras juddii* ammonite biozone with an estimated minimum duration of 0.0079 – 0.0254 Ma. 
 
 | Period (Ma) | Frequency (1/Ma) |     Cycle     |
 |:-----------:|:----------------:|:-------------:|
@@ -269,14 +265,17 @@ Radioisotopic geochronology and astrochronology underly the development of age-d
 
 The `astroBayes` R package and installation instructions are available at [github.com/robintrayler/astroBayes](https://github.com/robintrayler/astroBayes). All code and data necessary to reproduce the results of this manuscript (model testing, validation, and case study) are available at [github.com/robintrayler/astroBayes_manuscript](https://github.com/robintrayler/astroBayes_manuscript).
 
+# Author contribution {.unnumbered}
+
+RBT, and MDS conceived the project and developed the modeling framework with input from SRM. RBT wrote the code for the `astroBayes` `R` package and performed testing and validation with input from SRM and MDS. BBS contributed the Bridge Creek Limestone grayscale data. RBT, MDS, BBS, and SRM wrote and edited the manuscript. 
+
+# Competing Interests {.unnumbered}
+
+The authors declare that they have no conflict of interest. 
 
 # Acknowledgements {.unnumbered}
 
 We thank Dr. Matthias Sinnesael for providing the Cyclostratigraphy Inter-comparison Project data used for model testing. We also thank Dr. Jacob Anderson and Dr. Alberto Malinverno for insightful discussions during the development of this project. This work was supported by National Science Foundation grants EAR-1813088 (MDS) and EAR-1813278 (SRM). 
-
-# Author contribution {.unnumbered}
-
-RBT, and MDS conceived the project and developed the modeling framework with input from SRM. RBT wrote the code for the `astroBayes` `R` package and performed testing and validation with input from SRM and MDS. BBS contributed the Bridge Creek Limestone grayscale data. RBT, MDS, BBS, and SRM wrote and edited the manuscript. 
 
 \newpage
 
@@ -286,12 +285,12 @@ RBT, and MDS conceived the project and developed the modeling framework with inp
 
 \newpage
 
-# Supplemental Figures {label="S"}
+# Appendix A
 
-![Superimposed trace plots of sedimentation rate for 50 randomly chosen models for the TD1 dataset. Different colors indicate different model runs. the vertical dashed line indicates the burn-in period.](./figures/final figures/supplemental_figures/figure_S1.jpg){#fig:TD1_trace height=100%}
+![Superimposed trace plots of sedimentation rate for 50 randomly chosen models for the TD1 dataset. Different colors indicate different model runs. the vertical dashed line indicates the burn-in period.](./figures/final figures/supplemental_figures/figure_A1.jpg){#fig:TD1_trace height=100%}
 
-![Superimposed kernel density estimates of the posterior distribution for each model parameter from 50 randomly chosen TD1 validation models. Different colors indicate different model runs.](./figures/final figures/supplemental_figures/figure_S2.jpg){#fig:TD1_density height=100%}
+![Superimposed kernel density estimates of the posterior distribution for each model parameter from 50 randomly chosen TD1 validation models. Different colors indicate different model runs.](./figures/final figures/supplemental_figures/figure_A2.jpg){#fig:TD1_density height=100%}
 
-![Superimposed trace plots of sedimentation rate for 50 randomly chosen models for the CIP2 dataset. Different colors indicate different model runs. the vertical dashed line indicates the burn-in period.](./figures/final figures/supplemental_figures/figure_S3.jpg){#fig:CIP2_trace height=100%}
+![Superimposed trace plots of sedimentation rate for 50 randomly chosen models for the CIP2 dataset. Different colors indicate different model runs. the vertical dashed line indicates the burn-in period.](./figures/final figures/supplemental_figures/figure_A3.jpg){#fig:CIP2_trace height=100%}
 
-![Superimposed kernel density estimates of the posterior distribution for each model parameter from 50 randomly chosen CIP2 validation models. Different colors indicate different model runs.](./figures/final figures/supplemental_figures/figure_S4.jpg){#fig:CIP2_density height=100%}
+![Superimposed kernel density estimates of the posterior distribution for each model parameter from 50 randomly chosen CIP2 validation models. Different colors indicate different model runs.](./figures/final figures/supplemental_figures/figure_A4.jpg){#fig:CIP2_density height=100%}
