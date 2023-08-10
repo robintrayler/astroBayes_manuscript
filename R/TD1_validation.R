@@ -27,10 +27,10 @@ clusterEvalQ(cl = cl, {
   library(astroBayes)
   library(tidyverse)
   # load required data
-  cyclostrat           <- read.csv(file = './data/data_A/cyclostratigraphic_record.csv')
-  target_frequency     <- read.csv(file = './data/data_A/target_frequency.csv')
-  true_data            <- read.csv(file = './data/data_A/true_age.csv')
-  layer_boundaries     <- read.csv(file = './data/data_A/layer_boundaries.csv')
+  cyclostrat           <- read.csv(file = './data/TD1/cyclostratigraphic_record.csv')
+  target_frequency     <- read.csv(file = './data/TD1/target_frequency.csv')
+  true_data            <- read.csv(file = './data/TD1/true_age.csv')
+  layer_boundaries     <- read.csv(file = './data/TD1/layer_boundaries.csv')
 }
 )
 

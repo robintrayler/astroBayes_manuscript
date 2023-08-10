@@ -3,7 +3,7 @@ library(viridis)
 library(astrochron)
 library(tidyverse)
 theme_set(theme_bw())
-source('./R/tidy_eha.R')
+source('./R/functions/tidy_eha.R')
 
 # load the data ---------------------------------------------------------------
 # cyclostratigraphic data

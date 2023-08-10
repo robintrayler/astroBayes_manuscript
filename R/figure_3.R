@@ -1,5 +1,5 @@
 library(tidyverse)
-source('./R/plot_settings.R')
+source('./R/functions/plot_settings.R')
 library(cowplot)
 library(astroBayes)
 library(modifiedBChron)
@@ -104,7 +104,7 @@ CIP_model_8 <- make_plot(read_rds(file = './results/random_age_validation/CIP2_8
                          ylim = c(10, -1.5),
                          true_data = CIP2_true)
 
-pdf(file = './figures/random_models.pdf',
+pdf(file = './figures/figure_3.pdf',
     width = 4.5,
     height = 8.5)
 plot_grid(TD1_2, CIP_model_2,

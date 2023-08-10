@@ -31,7 +31,7 @@ clusterEvalQ(cl = cl, {
   cyclostrat <- read.csv(file = './data/CIP2/cyclostrat_data.csv') %>% 
     linterp(dt = 0.025, 
             genplot = FALSE)
-  target_frequency  <- read.csv('./data/CIP2/target_frequency')
+  target_frequency  <- read.csv('./data/CIP2/target_frequency.csv')
   true_data         <- read.csv(file = './data/CIP2/true_age.csv')
   layer_boundaries  <- read.csv(file = './data/CIP2/layer_boundaries.csv') 
 }

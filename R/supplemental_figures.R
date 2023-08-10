@@ -3,7 +3,7 @@ library(tidyverse)
 library(cowplot)
 library(viridis)
 
-source('./R/plot_settings.R')
+source('./R/functions/plot_settings.R')
 # load all the data -----------------------------------------------------------
 validation_data <- list.files('./results/stability_validation/CIP2/',
                        full.names = TRUE, 
