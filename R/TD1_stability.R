@@ -42,7 +42,7 @@ age_model <- function(i) {
     cyclostrat_data = cyclostrat,
     target_frequency = target_frequency,
     layer_boundaries = layer_boundaries,
-    iterations = 10000, 
+    iterations = 5000, 
     burn = 1000, 
     method = 'malinverno')
   
