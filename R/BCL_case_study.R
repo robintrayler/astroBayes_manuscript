@@ -17,7 +17,7 @@ geochron_updated <- read.csv(file = './data/BCL/updated_radioisotopic_dates.csv'
 layer_boundaries <- read.csv(file = './data/BCL/layer_boundaries.csv')
 
 # target frequencies
-target_frequency <- read.csv(file = './data/BCL/target_frequency.csv')
+target_frequency <- read.csv(file = './data/BCL/target_frequency2.csv')
 
 # C/T boundary position
 new_positions = data.frame(id = 'CTB',
@@ -62,6 +62,13 @@ eha_results %>%
   geom_hline(yintercept = 2.6694,
              color = 'white',
              linetype = 'dashed')
+
+# visualize the cyclostratigraphic likelihood ---------------------------------
+meyers_model <- visualize_likelihood(target_frequency = target_frequency,
+                                  layer_boundaries = layer_boundaries,
+                                  cyclostrat_data = cyclostrat_2.5,
+                                  method = 'malinverno',
+                                  resolution = 0.01)
 
 # run astro bayes -------------------------------------------------------------
 meyers_model <- astro_bayes_model(geochron_data = geochron_meyers,
