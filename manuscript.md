@@ -294,7 +294,7 @@ The authors declare that they have no conflict of interest.
 
 # Acknowledgements {.unnumbered}
 
-We thank Dr. Matthias Sinnesael for providing, and Dr. Christian Zeeden for developing, the Cyclostratigraphy Intercomparison Project data used for model testing. We also thank Dr. Jacob Anderson and Dr. Alberto Malinverno for insightful discussions during the development of this project. This work was supported by National Science Foundation grants EAR-1813088 (MDS) and EAR-1813278 (SRM). 
+We thank Dr. Matthias Sinnesael for providing, and Dr. Christian Zeeden for developing, the Cyclostratigraphy Intercomparison Project CIP2 data used for model testing. We also thank Jacob Anderson and Alberto Malinverno for insightful discussions during the development of this project. Finally, we thank Maarten Blaauw, David De Vleeschouwer, Niklas Hohmann, and Matthias Sinnesael for their comments during the open review and discussion of this manuscript. This work was supported by National Science Foundation grants EAR-1813088 (MDS) and EAR-1813278 (SRM). 
 
 \newpage
 
