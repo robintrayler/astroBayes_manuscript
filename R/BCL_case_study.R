@@ -166,7 +166,7 @@ meyers_eha <- data.frame(age = meyers_model$cyclostrat_CI[[1]]$median,
           verbose = FALSE) |> 
   tidy_eha(win = 0.75,
            step = 0.025,
-           fmax = 50) |> 
+           fmax = 55) |> 
   ggplot(mapping = aes(x = freq,
                        y = depth,
                        fill = amplitude)) +
@@ -181,7 +181,7 @@ meyers_eha <- data.frame(age = meyers_model$cyclostrat_CI[[1]]$median,
              size = 1,
              linetype = 'dotted') + 
   scale_color_brewer(palette = "Purples") + 
-  xlim(0, 50) + 
+  xlim(0, 55) + 
   scale_y_continuous(breaks = c(93.0, 93.5, 94.0, 94.5),
                      limits = c(93.0, 94.25)) + 
   scale_y_reverse()
@@ -192,7 +192,7 @@ updated_eha <- data.frame(age = updated_model$cyclostrat_CI[[1]]$median,
           verbose = FALSE) |> 
   tidy_eha(win = 0.75,
            step = 0.025,
-           fmax = 50) |> 
+           fmax = 55) |> 
   ggplot(mapping = aes(x = freq,
                        y = depth,
                        fill = amplitude)) +
@@ -209,8 +209,10 @@ updated_eha <- data.frame(age = updated_model$cyclostrat_CI[[1]]$median,
              size = 1,
              linetype = 'dotted') + 
   scale_color_brewer(palette = "Purples") + 
-  xlim(0, 50) + 
-  ylim(94.3, 93.0)
+  xlim(0, 55) + 
+  scale_y_continuous(breaks = c(93.0, 93.5, 94.0, 94.5),
+                     limits = c(93.0, 94.25)) + 
+  scale_y_reverse()
 
 # periodogram 
 meyers_pgram <- meyers_model$cyclostrat_CI[[1]] |>
@@ -244,7 +246,7 @@ meyers_pgram <- meyers_model$cyclostrat_CI[[1]] |>
   theme(panel.grid = element_blank(),
         axis.text.x = element_blank(),
         axis.title.x = element_blank()) + 
-  xlim(0, 50)
+  xlim(0, 55)
 
 updated_pgram <- updated_model$cyclostrat_CI[[1]] |>
   select(median,
@@ -279,14 +281,14 @@ updated_pgram <- updated_model$cyclostrat_CI[[1]] |>
         axis.title.x = element_blank(),
         axis.title.y = element_blank(),
         axis.text.y = element_blank()) + 
-  xlim(0, 50)
+  xlim(0, 55)
 
-cowplot::plot_grid(meyers_pgram, updated_pgram,
-                   meyers_eha, updated_eha, 
+cowplot::plot_grid(meyers_pgram,
+                   meyers_eha,
                    nrow = 2,
-                   ncol = 2,
+                   ncol = 1,
                    aling = 'v',
-                   rel_heights = c(1, 2, 1, 2))
+                   rel_heights = c(1, 2))
 
 # Calculate the hiatus duration for both models -----------------------------------------
 meyers_dens <-  meyers_model$hiatus_durations[meyers_model$burn:meyers_model$iterations] |> 

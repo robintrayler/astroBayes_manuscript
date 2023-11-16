@@ -237,7 +237,7 @@ For a simple example of an inappropriate use of `astroBayes`, we replaced the cy
 
 The Bridge Creek Limestone is the uppermost member of the Greenhorn Formation of central Colorado. It is primarily composed of hemipelagic marlstone and limestone couplets that extend laterally for over 1,000 km in the Western Interior Basin [@elder1994]. These couplets are characterized by alternations from darker organic carbon-rich laminated clay and mudstones to lighter carbonate-rich, organic carbon-poor limestone facies. Previous work has reported Milankovitch scale cyclicity in the Bridge Creek Limestone Member through the application of statistical astrochronologic testing methods [@sageman1997; @sageman1998; @meyers2001; @meyers2012; @meyers2008]. Using U-Pb and ^40^Ar/^39^Ar ages from several bentonites throughout the section to provide temporal anchoring of the astrochronology, @meyers2012 previously calibrated the age of the Cenomanian-Turonian boundary as 93.90±0.15Ma (mean±95%CI) using an adaptation of the Bayesian "stacked bed" algorithm [@buck1991] that respects both stratigraphic superposition and astrochronologic durations between the dates and the boundary position. That work used the floating astrochronology of @meyers2001, based on analysis of a high stratigraphic resolution optical densitometry record (i.e., grayscale) of the Bridge Creek Limestone Member. @meyers2004 later quantified a brief hiatus in the Bridge Creek Limestone Member near the base of the *Neocardioceras juddii* ammonite biozone, at the top of limestone marker bed LS5, with an estimated minimum duration of 0.079 – 0.0254 Ma. Sedimentologic evidence for the hiatus incudes the presence of a calcarenite cap at the top of LS5 at the basin center Pueblo, Colorado section [@meyers2004].
 
-| Period (Ma) | Frequency (1/Ma) |     Cycle     |
+| Period (Myr)| Frequency (1/Myr)|     Cycle     |
 |:-----------:|:----------------:|:-------------:|
 | 0.4057      |   2.46500        | eccentricity  |
 | 0.0940      |  10.54000        | eccentricity  |
@@ -246,8 +246,9 @@ The Bridge Creek Limestone is the uppermost member of the Greenhorn Formation of
 | 0.0391      |  25.57545        | obliquity     |
 | 0.0279      |  35.82561        | obliquity     |
 | 0.0224      |  44.62294        | precession    | 
+| 0.0186      |  53.74899        | precession    | 
 
-Table: Astronomical target periods used for the Bridge Creek Limestone Member `astroBayes` analysis. The precession and obliquity terms are based on the reconstruction of @waltham2015 at 94 Ma, and the eccentricity terms are based on the LA10d solution [@laskar2011] from 0-20 Ma. {#tbl:ct_frequencies}
+Table: Astronomical target periods used for the Bridge Creek Limestone Member `astroBayes` analysis. The precession and obliquity terms are based on the reconstruction of @waltham2015 at 94 Ma, and the eccentricity terms are based on the LA10d solution [@laskar2011] from 0-20 Ma. We used the average of the the two ~0.02 Myr and two ~0.018 Myr precession terms.{#tbl:ct_frequencies}
 
 We used `astroBayes` to develop two new age-depth models for the Bridge Creek Limestone Member using the the grayscale record of @meyers2001 a suite of target astronomical frequencies (@tbl:ct_frequencies), and  two sets of radioisotopic dates to develop two alternative models. For the first model (*Meyers* model) we used the ^40^Ar/^39^Ar bentonite ages of @meyers2012, and for the second (*Updated* model) we used the updated ^40^Ar/^39^Ar ages of @jones2021 and @jicha2016. Note that since the A-bentonite has not been reanalyzed, both models use the @meyers2012 age for this sample (@tbl:BCL_dates). We divided the Bridge Creek Limestone member grayscale record (@fig:ct_boundary A) into three layers based on the observed shifts in the high spectral amplitude frequency-track (~1.1 cycles/m) delineated about 6.7 meters and at the reported hiatus at 2.7 meters [@meyers2004] depth (@fig:ct_boundary B).
 
@@ -294,7 +295,7 @@ The authors declare that they have no conflict of interest.
 
 # Acknowledgements {.unnumbered}
 
-We thank Dr. Matthias Sinnesael for providing, and Dr. Christian Zeeden for developing, the Cyclostratigraphy Intercomparison Project CIP2 data used for model testing. We also thank Jacob Anderson and Alberto Malinverno for insightful discussions during the development of this project. Finally, we thank Maarten Blaauw, David De Vleeschouwer, Niklas Hohmann, and Matthias Sinnesael for their comments during the open review and discussion of this manuscript. This work was supported by National Science Foundation grants EAR-1813088 (MDS) and EAR-1813278 (SRM). 
+We thank Dr. Matthias Sinnesael for providing, and Dr. Christian Zeeden for developing, the Cyclostratigraphy Intercomparison Project CIP2 data used for model testing. We also thank Dr. Jacob Anderson and Dr. Alberto Malinverno for insightful discussions during the development of this project. Finally, we thank Dr. Maarten Blaauw, Dr. David De Vleeschouwer, Niklas Hohmann, and Dr. Matthias Sinnesael for their comments during the open review and discussion of this manuscript. This work was supported by National Science Foundation grants EAR-1813088 (MDS) and EAR-1813278 (SRM). 
 
 \newpage
 
