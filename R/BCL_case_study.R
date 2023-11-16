@@ -17,7 +17,7 @@ geochron_updated <- read.csv(file = './data/BCL/updated_radioisotopic_dates.csv'
 layer_boundaries <- read.csv(file = './data/BCL/layer_boundaries.csv')
 
 # target frequencies
-target_frequency <- read.csv(file = './data/BCL/target_frequency2.csv')
+target_frequency <- read.csv(file = './data/BCL/target_frequency.csv')
 
 # C/T boundary position
 new_positions = data.frame(id = 'CTB',
