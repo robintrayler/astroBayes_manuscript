@@ -311,7 +311,10 @@ ggplot() +
     alpha = 0.75, 
     color = 1,
     linetype = 'dashed') +
-  xlab('hiatus duration (Ma)')
+  xlab('hiatus duration (Ma)') + 
+  xlim(0, 0.6) + 
+  geom_vline(xintercept = updated_dens$x[which.max(updated_dens$y)]) + 
+  geom_vline(xintercept = meyers_dens$x[which.max(meyers_dens$y)])
 
 updated_dens$x[which.max(updated_dens$y)]
 meyers_dens$x[which.max(meyers_dens$y)]
