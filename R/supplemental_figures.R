@@ -28,7 +28,7 @@ for(i in seq_along(validation_data)) {
 
 pdf(width = 5, 
     height = 5,
-    file = './figures/final figures/supplemental_figures/CIP2_trace.pdf')
+    file = './figures/final figures/supplemental_figures/figure_A3.pdf')
 sed_rate <- sed_rate |> 
   reduce(rbind)
 
@@ -46,9 +46,9 @@ sed_rate |>
 dev.off()  
 
 
-pdf(width = 4, 
-    height = 4,
-    file = './figures/final figures/supplemental_figures/CIP2_density.pdf')
+pdf(width = 5, 
+    height = 5,
+    file = './figures/final figures/supplemental_figures/figure_A4.pdf')
 
 sed_rate |> 
   ggplot(mapping = aes(x = sed_rate, 
@@ -92,7 +92,7 @@ for(i in seq_along(validation_data)) {
 
 pdf(width = 5, 
     height = 5,
-    file = './figures/final figures/supplemental_figures/TD1_trace.pdf')
+    file = './figures/final figures/supplemental_figures/figure_A1.pdf')
 sed_rate <- sed_rate |> 
   reduce(rbind)
 
@@ -112,7 +112,7 @@ dev.off()
 
 pdf(width = 5, 
     height = 5,
-    file = './figures/final figures/supplemental_figures/TD1_density.pdf')
+    file = './figures/final figures/supplemental_figures/figure_A2.pdf')
 
 sed_rate |> 
   ggplot(mapping = aes(x = sed_rate, 
