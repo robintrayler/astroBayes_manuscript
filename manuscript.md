@@ -175,15 +175,15 @@ We assessed model performance using two metrics. First, we assessed model accura
 
 ### Reproducibility and Stability {#sec:stability}
 
-| Data Set |   Sample    | Age±1σ (Ma) | Position (m) |
-| :------: | :---------: | :---------: | :----------: |
-|   TD1    |      A      | 0.069±0.01  |     0.64     |
-|          |      B      | 0.520±0.02  |     5.17     |
-|          |      C      | 1.790±0.05  |    17.48     |
-|   CIP2   |      D      | 0.062±0.009 |     1.24     |
-|          |      E      | 0.820±0.012 |     3.49     |
-|          |      F      | 1.290±0.019 |     6.99     |
-|          |      G      | 1.460±0.022 |     9.49     |
+| Data Set |   Sample    | Age±1σ (Ma)  | Position (m) |
+|:--------:|:-----------:|:------------:|:------------:|
+|   TD1    |      A      | 0.069±0.010  |     0.64     |
+|          |      B      | 0.520±0.020  |     5.17     |
+|          |      C      | 1.790±0.050  |    17.48     |
+|   CIP2   |      D      | 0.062±0.009  |     1.24     |
+|          |      E      | 0.820±0.012  |     3.49     |
+|          |      F      | 1.290±0.019  |     6.99     |
+|          |      G      | 1.460±0.022  |     9.49     |
 
 Table: Dates used as inputs for reproducibility & stability testing of the synthetic test cases (TD1 and CIP2). {#tbl:testing_dates}
 
@@ -215,7 +215,7 @@ The number of radioisotopic dates appears to have the strongest effect on overal
 
 ## Developing Sedimentation Models and Constraining Uncertainty
 
-Clearly, our choice of a simple sedimentation model for Bayesian inversion influences age-depth model construction. Since @eq:malinverno is calculated layer-by-layer, a limitation of our model is that each layer must contain enough time and astrochronologic data to resolve the astronomical frequencies (*f*) of interest. Both the astrochronologic data and radioisotopic dates can inform sedimentation model construction. First, the radioisotopic dates can be used to calculate average sedimentation rates which to a first approximation can then inform the length of sedimentation model layers needed to capture specific astronomical cycles (e.g., eccentricity). For example, @tbl:testing_dates contains the dates and stratigraphic positions used for inputs for TD1 stability testing (see @sec:stability). A time difference of 1.72 Myr between the uppermost and lowermost dates separated by 16.84 meters implies an average sedimentation rate of ~9.8 m/Myr or alternatively ~0.1 Ma/m. A sedimentation model with a layer thickness of 1 meter would not reliably resolve long (~0.405 Ma) and short (~0.1 Ma) eccentricity cycles and would only weakly resolve obliquity (~0.41 Ma) and precession scale cycles (~0.02 Ma) within each layer. The choice of layer thickness is therefore dependent on both the average sedimentation rate, the cyclostratigraphic sampling rate, and the dominant astronomical signals present in the data. Records dominated by eccentricity scale fluctuations will necessarily require layer thicknesses that capture longer timescales than records dominated by higher frequency obliquity and precession scale variations. Future model development could semi-automate much of this starting model construction, optimizing the number and length of layers. However, a critical prerequisite is that the cyclostratigraphic data series has a sampling rate sufficient to reliably capture the highest frequency of interest (e.g., precession).
+Clearly, our choice of a simple sedimentation model for Bayesian inversion influences age-depth model construction. Since @eq:malinverno is calculated layer-by-layer, a limitation of our model is that each layer must contain enough time and astrochronologic data to resolve the astronomical frequencies (*f*) of interest. Both the astrochronologic data and radioisotopic dates can inform sedimentation model construction. First, the radioisotopic dates can be used to calculate average sedimentation rates which to a first approximation can then inform the length of sedimentation model layers needed to capture specific astronomical cycles (e.g., eccentricity). For example, @tbl:testing_dates contains the dates and stratigraphic positions used for inputs for TD1 stability testing (see @sec:stability). A time difference of 1.72 Myr between the uppermost and lowermost dates separated by 16.84 meters implies an average sedimentation rate of ~9.8 m/Myr or alternatively ~0.1 Myr/m. A sedimentation model with a layer thickness of 1 meter would not reliably resolve long (~0.405 Myr) and short (~0.1 Myr) eccentricity cycles and would only weakly resolve obliquity (~0.41 My) and precession scale cycles (~0.02 Myr) within each layer. The choice of layer thickness is therefore dependent on both the average sedimentation rate, the cyclostratigraphic sampling rate, and the dominant astronomical signals present in the data. Records dominated by eccentricity scale fluctuations will necessarily require layer thicknesses that capture longer timescales than records dominated by higher frequency obliquity and precession scale variations. Future model development could semi-automate much of this starting model construction, optimizing the number and length of layers. However, a critical prerequisite is that the cyclostratigraphic data series has a sampling rate sufficient to reliably capture the highest frequency of interest (e.g., precession).
 
 A potential criticism of our approach is that our choice of a simple Bayesian sedimentation model artificially reduces overall model uncertainties. Since we do not allow sedimentation rate to vary randomly at all points throughout the stratigraphy, our model avoids the inflated ("ballooning") credible intervals that characterize "dates-only" age-depth models (i.e., `Bchron`, `rbacon`, `Chron.jl`). Indeed, @haslett2008 consider this minimum assumption of smoothness as a fundamental feature of age-depth modeling as there is *"no reason a priori to exclude either almost flat or very steep sections"*. Although @blaauw2011 consider some smoothness desirable, both modeling approaches allow sedimentation rate to vary randomly and considerably in the absence of other constraints. However, we feel that astrochronology provides a clear, strong constraint on the stratigraphic variability in sedimentation rate. Astronomical tuning approaches show that changes in sedimentation rate can be unrelated to astronomical forcing yet be preserved in the spatial representation of the astronomical cycles [@muller2002; @malinverno2010] and stratigraphic investigation of preserved astronomical frequencies often reveals long periods of near constant sedimentation rates [@shen2022; @sinnesael2019; @meyers2001]. Therefore, the addition of cyclostratigraphic data to age-depth model construction allows for the informed development of simpler sedimentation models which result in substantially lower uncertainties.
 
@@ -243,29 +243,29 @@ The Bridge Creek Limestone Member is the uppermost member of the Greenhorn Forma
 
 | Period (Myr)| Frequency (1/Myr)|     Cycle     |
 |:-----------:|:----------------:|:-------------:|
-| 0.4057      |   2.46500        | eccentricity  |
-| 0.0940      |  10.54000        | eccentricity  |
-| 0.0989      |  10.11500        | eccentricity  |
-| 0.0504      |  19.82420        | obliquity     |
-| 0.0391      |  25.57545        | obliquity     |
-| 0.0279      |  35.82561        | obliquity     |
-| 0.0224      |  44.62294        | precession    | 
-| 0.0186      |  53.74899        | precession    | 
+| 0.4057      |   2.4650         | eccentricity  |
+| 0.0940      |  10.5400         | eccentricity  |
+| 0.0989      |  10.1150         | eccentricity  |
+| 0.0504      |  19.8242         | obliquity     |
+| 0.0391      |  25.5754         | obliquity     |
+| 0.0279      |  35.8256         | obliquity     |
+| 0.0224      |  44.6229         | precession    | 
+| 0.0186      |  53.7489         | precession    | 
 
 Table: Astronomical target periods used for the Bridge Creek Limestone Member `astroBayes` analysis. The precession and obliquity terms are based on the reconstruction of @waltham2015 at 94 Ma, and the eccentricity terms are based on the LA10d solution [@laskar2011] from 0-20 Ma. We used the average of the two ~0.02 Myr and two ~0.018 Myr precession terms. {#tbl:ct_frequencies}
 
 We used `astroBayes` to develop two new age-depth models for the Bridge Creek Limestone Member using the the grayscale record of @meyers2001, a suite of target astronomical frequencies (@tbl:ct_frequencies), and two sets of radioisotopic dates, resulting in two alternative models. For the first model (*Meyers* model) we used the ^40^Ar/^39^Ar bentonite ages of @meyers2012, and for the second (*Updated* model) we used the updated ^40^Ar/^39^Ar ages of @jones2021 and @jicha2016. Note that since the A-bentonite has not been reanalyzed, both models use the @meyers2012 age for this sample (@tbl:BCL_dates). We divided the Bridge Creek Limestone member grayscale record (@fig:ct_boundary A) into three layers based on the observed shifts in the high spectral amplitude frequency-track (~1.1 cycles/m) delineated about 6.7 meters height and at the reported hiatus at 2.7 meters height [@meyers2004] depth (@fig:ct_boundary B).
 
-| Age Model |    Sample   |  Age±1σ (Ma) | Position (m) |    Source     |
-| :-------: | :---------: | :----------: | :----------: | :-----------: |
-|  Meyers   | A-bentonite | 94.20±0.140  |     1.62     | @meyers2012   |
-|           | B-bentonite | 94.10±0.135  |     3.30     | @meyers2012   |
-|           | C-bentonite | 93.79±0.130  |     5.95     | @meyers2012   |
-|           | D-bentonite | 93.67±0.155  |     6.98     | @meyers2012   |
-|  Updated  | A-bentonite | 94.20±0.140  |     1.62     | @meyers2012   |
-|           | B-bentonite | 93.99±0.110  |     3.30     | @jicha2016    |
-|           | C-bentonite | 94.022±0.102 |     5.95     |  @jones2021   |
-|           | D-bentonite | 93.799±0.077 |     6.98     |  @jones2021   |
+| Age Model |    Sample   |  Age±1σ (Ma)  | Position (m) |    Source     |
+| :-------: | :---------: | :-----------: | :----------: | :-----------: |
+|  Meyers   | A-bentonite | 94.200±0.140  |     1.62     | @meyers2012   |
+|           | B-bentonite | 94.100±0.135  |     3.30     | @meyers2012   |
+|           | C-bentonite | 93.790±0.130  |     5.95     | @meyers2012   |
+|           | D-bentonite | 93.670±0.155  |     6.98     | @meyers2012   |
+|  Updated  | A-bentonite | 94.200±0.140  |     1.62     | @meyers2012   |
+|           | B-bentonite | 93.990±0.110  |     3.30     | @jicha2016    |
+|           | C-bentonite | 94.022±0.102  |     5.95     |  @jones2021   |
+|           | D-bentonite | 93.799±0.077  |     6.98     |  @jones2021   |
 
 Table: Radioisotopic dates used used as model inputs for the two Bridge Creek Limestone Member age-depth models shown in @fig:ct_boundary. {#tbl:BCL_dates}
 
