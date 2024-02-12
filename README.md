@@ -35,12 +35,15 @@ These scripts are designed to be run in parallel on a fairly powerful desktop co
 ├── R # R scripts to to reproduce figures and calculations
     └── CIP2_stability.R                    # runs 1,000 CIP2 models with the same inputs
     └── CIP2_validation.R                   # runs 4,000 CIP2 models with randomly placed dates
+    └── CIP2_outlier_analysis.R             # runs 1,000 CIP2 with randomly placed outliers
     └── TD1_stability.R                     # runs 1,000 TD1 models with the same inputs
     └── TD1_validation.R                    # runs 4,000 TD1 models with randomly placed dates
+      └── TD1_outlier_analysis.R            # runs 1,000 TD1 with randomly placed outliers
     └── CIP2_hiatus_sensitvity              # tests sensitivity of hiatus duration to date position
     └── BCL_case_study.R                    # Bridge Creek Limestone case study
     └── model_reproducibility.R             # calculates the reproducibility of the 95% CI
     └── proportion_constrained.R            # calculates proportion of true age model within 95% CI
+    └── outlier_proportion_contained.R      # calculates proportion of true age model within 95% CI for models with outliers
     └── figure_2.R                          # generates figure 2
     └── figure_3.R                          # generates figure 3
     └── figure_8.R                          # generates figure 8
