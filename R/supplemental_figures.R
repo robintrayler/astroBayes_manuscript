@@ -48,7 +48,11 @@ dev.off()
 
 pdf(width = 5, 
     height = 5,
+<<<<<<< Updated upstream
     file = './figures/final figures/supplemental_figures/figure_A4.pdf')
+=======
+    file = './figures/final figures/supplemental_figures/CIP2_density.pdf')
+>>>>>>> Stashed changes
 
 sed_rate |> 
   ggplot(mapping = aes(x = sed_rate, 

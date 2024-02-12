@@ -311,10 +311,10 @@ We thank Dr. Matthias Sinnesael for providing, and Dr. Christian Zeeden for deve
 
 # Appendix A
 
-![Superimposed MCMC trace plots of sedimentation rate for 50 randomly chosen models for the TD1 synthetic dataset. Different colors indicate different model runs. The vertical dashed line indicates the burn-in period of 1,000 iterations.](./figures/final figures/supplemental_figures/figure_A1.jpg){#fig:TD1_trace height=100%}
+![Superimposed MCMC trace plots of sedimentation rate for 50 randomly chosen models for the TD1 synthetic dataset. Different colors indicate different model runs. The vertical dashed line indicates the burn-in period of 1,000 iterations.](./figures/final figures/supplemental_figures/TD1_trace.pdf){#fig:TD1_trace height=100%}
 
-![Superimposed kernel density estimates of the posterior distribution for each model parameter from 50 randomly chosen TD1 validation models. Different colors indicate different model runs.](./figures/final figures/supplemental_figures/figure_A2.jpg){#fig:TD1_density height=100%}
+![Superimposed kernel density estimates of the posterior distribution for each model parameter from 50 randomly chosen TD1 validation models. Different colors indicate different model runs.](./figures/final figures/supplemental_figures/TD1_density.pdf){#fig:TD1_density height=100%}
 
-![Superimposed MCMC trace plots of sedimentation rate for 50 randomly chosen models for the CIP2 synthetic dataset. Different colors indicate different model runs. The vertical dashed line indicates the burn-in period of 1,000 iterations.](./figures/final figures/supplemental_figures/figure_A3.jpg){#fig:CIP2_trace height=100%}
+![Superimposed MCMC trace plots of sedimentation rate for 50 randomly chosen models for the CIP2 synthetic dataset. Different colors indicate different model runs. The vertical dashed line indicates the burn-in period of 1,000 iterations.](./figures/final figures/supplemental_figures/CIP2_density.pdf){#fig:CIP2_trace height=100%}
 
-![Superimposed kernel density estimates of the posterior distribution for each model parameter from 50 randomly chosen CIP2 validation models. Different colors indicate different model runs.](./figures/final figures/supplemental_figures/figure_A4.jpg){#fig:CIP2_density height=100%}
+![Superimposed kernel density estimates of the posterior distribution for each model parameter from 50 randomly chosen CIP2 validation models. Different colors indicate different model runs.](./figures/final figures/supplemental_figures/CIP2_trace.pdf){#fig:CIP2_density height=100%}
